@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: GeneralProfile
+  m_EditorClassIdentifier: 
+  m_GroupName: GeneralProfile
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 60b4f40f920452042ae361314219e8a3
+  m_SerializeEntries:
+  - m_GUID: f7d98eb038a650046a64e933ae426b0a
+    m_Address: Assets/Sprite/General/ZW_General.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7611a3af9bae18e4d81531f60cec0713
+    m_Address: Assets/Sprite/General/ZDW_General.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ccc8b0d6771117346b041542ffb6c6d6
+    m_Address: Assets/Sprite/General/YSH_General.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4596272ffb0802c4a8c73a2c4c70291a
+    m_Address: Assets/Sprite/General/WSF_General.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 464443ac7e2c7b543a038a966a41ca33
+    m_Address: Assets/Sprite/General/WR_General.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7506ac86411d7844aacadbdb8e34396a
+    m_Address: Assets/Sprite/General/WCR_General.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 08c8b94b7740b0f418ed9086b4db6dae
+    m_Address: Assets/Sprite/General/LSY_General.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0f1637ce1db07b5488172e68fdbf4576
+    m_Address: Assets/Sprite/General/LRG_General.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a27d1b6b3bd1a1b44a272c21f2e76158
+    m_Address: Assets/Sprite/General/LKY_General.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e4b4459051ecc64985a297777ece0c6
+    m_Address: Assets/Sprite/General/LCX_General.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0b25797b3f174ad4e836dd98606ea78d
+    m_Address: Assets/Sprite/General/LCunXiao_General.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0c68fe97bba257942aea7ae2642b55f1
+    m_Address: Assets/Sprite/General/GCT_General.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d313ee9ab7108654daa8d20944fb12cc
+    m_Address: Assets/Sprite/General/Noleader2_General.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a5671d6659c3854490532920d82339c
+    m_Address: Assets/Sprite/General/Noleader_General.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6edbfffc6edf3044e9087ea2a0864198
+    m_Address: Assets/Sprite/General/GCZ_General.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 4ae8bb2efda2ace4a9dc654f77048e0a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 49e89ceb5b5128c4e92320389917891b, type: 2}
+    - {fileID: 11400000, guid: 339de5b8ea0d25e4793d90793f79faa5, type: 2}

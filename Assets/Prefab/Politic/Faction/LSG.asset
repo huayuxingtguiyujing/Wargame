@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 718ed5336567de84b930151002e833fb, type: 3}
+  m_Name: LSG
+  m_EditorClassIdentifier: 
+  m_Guid: dc837b2884e34645a80c06ad2e3e1ca7
+  FactionTag: LRG
+  FactionName: "\u5218\u4EC1\u606D"
+  FactionPosition: "\u5E7D\u5DDE\u8282\u5EA6\u4F7F"
+  FactionDes: 
+  FactionColor: {r: 0.6313858, g: 0, b: 1, a: 1}
+  factionType: 0
+  Rivals: []
+  AbleArmyUnit:
+  - {fileID: 11400000, guid: 9010942150498ed449edd22b58bf92c2, type: 2}
+  - {fileID: 11400000, guid: 2783b33b53c32d74ba72b328cf547469, type: 2}
+  CapitalProvinceID: 1963
+  ProvincesInBeginning:
+  - 2043
+  - 2044
+  - 2045
+  - 2046
+  - 2047
+  - 2048
+  - 2049
+  - 2050
+  - 2051
+  - 2052
+  - 2053
+  - 2001
+  - 2002
+  - 2003
+  - 2004
+  - 2005
+  - 2006
+  - 2007
+  - 2008
+  - 2009
+  - 2010
+  - 1960
+  - 1961
+  - 1962
+  - 1963
+  - 1964
+  - 1965
+  - 1966
+  - 1967
+  - 1918
+  - 1919
+  - 1920
+  - 1921
+  - 1922
+  - 1923
+  - 1924
+  - 1879
+  - 1880
+  - 1836
+  - 1837
+  - 1795
+  - 1796
+  FactionGenerals:
+  - {fileID: 11400000, guid: 5ca1199a2a2ac534cabddbff00dc806c, type: 2}

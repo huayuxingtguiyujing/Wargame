@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5d3d3bb791e03e44add6671c19df0b3, type: 3}
+  m_Name: Cavalry
+  m_EditorClassIdentifier: 
+  m_Guid: 8ca1d7697ae7da4cb5609bb5c6b5c002
+  armyUnitName: "\u9A91\u5175"
+  armyUnitDescription: "\u673A\u52A8\u6027\u5F88\u5F3A\u7684\u5175\u79CD"
+  armyUnitType: 1
+  armyBaseAttack: 12
+  armyBaseDefend: 5
+  armyAttackScope: 1
+  armorCladRate: 3
+  armorPenetration: 0
+  armyBaseMoraleAttack: 0.15
+  armyBaseMoraleAttack_Rear: 0.01
+  armyBaseMoraleDefend: 0
+  armyBaseMoraleDefend_Rear: 0
+  armyBaseSpeed: 1.5
+  armyBaseMorale: 10
+  armyBaseMaxMorale: 10
+  armyBaseDiscipine: 1
+  recoverMoraleSpeed: 0.4
+  currentSupply: 10
+  supplyBaseMax: 10
+  armyCostMoney: 2000
+  armyCostBaseDay: 6
+  armyCostManpower: 1000
+  armyCurrentMappower: 1000
+  armyReinforcementCost: 2000

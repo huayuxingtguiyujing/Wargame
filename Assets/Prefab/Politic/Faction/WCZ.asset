@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 718ed5336567de84b930151002e833fb, type: 3}
+  m_Name: WCZ
+  m_EditorClassIdentifier: 
+  m_Guid: 5ce85b962c6e84498a673029f98d85f7
+  FactionTag: WCZ
+  FactionName: "\u738B\u5904\u76F4"
+  FactionPosition: 
+  FactionDes: 
+  FactionColor: {r: 0.5971875, g: 1, b: 0, a: 1}
+  factionType: 0
+  Rivals: []
+  AbleArmyUnit: []
+  CapitalProvinceID: 1877
+  ProvincesInBeginning:
+  - 1917
+  - 1875
+  - 1876
+  - 1877
+  - 1878
+  - 1832
+  - 1833
+  - 1834
+  - 1835
+  - 1792
+  - 1793
+  - 1794
+  FactionGenerals: []

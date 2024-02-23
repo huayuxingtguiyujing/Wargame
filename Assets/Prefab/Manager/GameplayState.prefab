@@ -1,0 +1,241 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &309741298734592700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6625697457135554390}
+  m_Layer: 0
+  m_Name: ParentTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6625697457135554390
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309741298734592700}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5700300017101887693}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5386256097233173978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5700300017101887693}
+  - component: {fileID: 6444691141493122116}
+  - component: {fileID: 551023561715433992}
+  - component: {fileID: 9010046453444606098}
+  - component: {fileID: 9143130299797829903}
+  - component: {fileID: 7940246040541254664}
+  - component: {fileID: 1607804895957862965}
+  - component: {fileID: 8297147180893990992}
+  - component: {fileID: 6352954403867970072}
+  - component: {fileID: 6757426446629443814}
+  - component: {fileID: 4450068442605483274}
+  m_Layer: 0
+  m_Name: GameplayState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5700300017101887693
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5386256097233173978}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6625697457135554390}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6444691141493122116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5386256097233173978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819ece6f91adaa94380ace867c0547da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &551023561715433992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5386256097233173978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+--- !u!114 &9010046453444606098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5386256097233173978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a5450426445ddd4082bbcaf25424578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeRecorderUI: {fileID: 0}
+--- !u!114 &9143130299797829903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5386256097233173978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a979261a3f16cc4c8749449be7d25db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeSimulator: {fileID: 9010046453444606098}
+  timeRecorderUI: {fileID: 0}
+--- !u!114 &7940246040541254664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5386256097233173978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 509a71398cbac334984d0e37e75ab969, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  politicLoader: {fileID: 8297147180893990992}
+  mapController: {fileID: 0}
+  countryTransform: {fileID: 6625697457135554390}
+  networkHook: {fileID: 6444691141493122116}
+  gamePlayServerState: {fileID: 1607804895957862965}
+  timeNetworkSimulator: {fileID: 9143130299797829903}
+  SituationSpriteHolder: {fileID: 0}
+--- !u!114 &1607804895957862965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5386256097233173978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d9b7c0e872a73748a2179952fe1e869, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  networkHook: {fileID: 6444691141493122116}
+  politicNetworkLoader: {fileID: 6352954403867970072}
+--- !u!114 &8297147180893990992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5386256097233173978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05b4e2ed8c10e694c87d38ac287c66c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  politicNetwork: {fileID: 6352954403867970072}
+  bookMarks: {fileID: 11400000, guid: 6b5312ea988fd0b49bfdd31919b5e016, type: 2}
+  politicPanel: {fileID: 0}
+  factionPanel: {fileID: 0}
+  BookMarkFactions: []
+--- !u!114 &6352954403867970072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5386256097233173978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 075d91f346fd08248be7637cbecf0a15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  politicLoader: {fileID: 8297147180893990992}
+  networkFactionPrefab: {fileID: 3904200152762536685, guid: a0019e1afdeb35c41b23441f16cf8528, type: 3}
+  dirtySign:
+    m_InternalValue: 0
+--- !u!114 &6757426446629443814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5386256097233173978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b540c42d3225ffc4b9a7e368cd253643, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  withdrawTarget: {fileID: 0}
+  armyNetworkCtrl: {fileID: 4450068442605483274}
+  mapController: {fileID: 0}
+  armyPanel: {fileID: 0}
+  combatPanel: {fileID: 0}
+  drawMat: {fileID: 10756, guid: 0000000000000000e000000000000000, type: 0}
+  armyPrefab: {fileID: 3703595050199751205, guid: 8e9828bf262ea994d8c3ca96f927d18d, type: 3}
+  armyTransform: {fileID: 0}
+  allArmyObject: []
+  currentChooseArmy: []
+  InfantryArmyUnitData: {fileID: 11400000, guid: 9010942150498ed449edd22b58bf92c2, type: 2}
+  clickableLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  maxDetectDistance: 100
+--- !u!114 &4450068442605483274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5386256097233173978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3016e21368dd4d647bdb70026aaa9af2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armyController: {fileID: 6757426446629443814}
+  mapController: {fileID: 0}

@@ -1,0 +1,131 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d7aef37a6a89949a16e0c85ce9cac0, type: 3}
+  m_Name: LCX_General
+  m_EditorClassIdentifier: 
+  generalName: LCX
+  generalChineseName: "\u674E\u5B58\u52D6"
+  generalDescription: 
+  generalTag: LKY
+  organizationModify: 0.2
+  maxCommandUnits: 80
+  visibleGrid: 2
+  normalModify:
+    maxMoraleModify: 0.2
+    recoverMoraleModify: 0
+    discipineModify: 0
+    speedModify: 0
+    armyAttackModify: 0
+    armyDefendModify: 0
+    armyAttackScopeModify: 0
+    armyArmorCladkModify: 0
+    armyArmorPenetrateModify: 0
+    armyMoraleAttackModify: 0
+    armyMoraleDefendModify: 0
+    armyMoraleModifyInRear: 0
+    armyMoraleModifyToRear: 0
+    supplyCostModiy: 0
+    supplyMaxModify: 0
+    costModify: 0
+    recruitCostModify: 0
+  standOffModify:
+    maxMoraleModify: 0
+    recoverMoraleModify: 0
+    discipineModify: 0
+    speedModify: 0
+    armyAttackModify: 0.2
+    armyDefendModify: 0
+    armyAttackScopeModify: 0
+    armyArmorCladkModify: 0
+    armyArmorPenetrateModify: 0
+    armyMoraleAttackModify: 0
+    armyMoraleDefendModify: 0
+    armyMoraleModifyInRear: 0
+    armyMoraleModifyToRear: 0
+    supplyCostModiy: 0
+    supplyMaxModify: 0
+    costModify: 0
+    recruitCostModify: 0
+  siegeModify:
+    maxMoraleModify: 0
+    recoverMoraleModify: 0
+    discipineModify: 0
+    speedModify: 0
+    armyAttackModify: 0
+    armyDefendModify: 0.2
+    armyAttackScopeModify: 0
+    armyArmorCladkModify: 0
+    armyArmorPenetrateModify: 0
+    armyMoraleAttackModify: 0
+    armyMoraleDefendModify: 0
+    armyMoraleModifyInRear: 0
+    armyMoraleModifyToRear: 0
+    supplyCostModiy: 0
+    supplyMaxModify: 0
+    costModify: 0
+    recruitCostModify: 0
+  engagementModify:
+    maxMoraleModify: 0
+    recoverMoraleModify: 0
+    discipineModify: 0
+    speedModify: 0
+    armyAttackModify: 0
+    armyDefendModify: 0
+    armyAttackScopeModify: 0
+    armyArmorCladkModify: 0.1
+    armyArmorPenetrateModify: 0
+    armyMoraleAttackModify: 0
+    armyMoraleDefendModify: 0
+    armyMoraleModifyInRear: 0
+    armyMoraleModifyToRear: 0
+    supplyCostModiy: 0
+    supplyMaxModify: 0
+    costModify: 0
+    recruitCostModify: 0
+  openBattleModify:
+    maxMoraleModify: 0
+    recoverMoraleModify: 0
+    discipineModify: 0
+    speedModify: 0
+    armyAttackModify: 0
+    armyDefendModify: 0
+    armyAttackScopeModify: 0
+    armyArmorCladkModify: 0
+    armyArmorPenetrateModify: 0
+    armyMoraleAttackModify: 0
+    armyMoraleDefendModify: 0.2
+    armyMoraleModifyInRear: 0
+    armyMoraleModifyToRear: 0
+    supplyCostModiy: 0
+    supplyMaxModify: 0
+    costModify: 0
+    recruitCostModify: 0
+  withdrawModify:
+    maxMoraleModify: 0
+    recoverMoraleModify: 0
+    discipineModify: 0
+    speedModify: 0
+    armyAttackModify: 0
+    armyDefendModify: 0
+    armyAttackScopeModify: 0
+    armyArmorCladkModify: 0
+    armyArmorPenetrateModify: 0
+    armyMoraleAttackModify: 0
+    armyMoraleDefendModify: 0
+    armyMoraleModifyInRear: 0
+    armyMoraleModifyToRear: 0.2
+    supplyCostModiy: 0
+    supplyMaxModify: 0
+    costModify: 0
+    recruitCostModify: 0
+  generalTraits: []
+  generalTactics: []

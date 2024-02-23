@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: ArmyUnit
+  m_EditorClassIdentifier: 
+  m_GroupName: ArmyUnit
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 8bf91e86167393b4ebac0d2f7358da5c
+  m_SerializeEntries:
+  - m_GUID: 2783b33b53c32d74ba72b328cf547469
+    m_Address: Assets/Prefab/Unit/Cavalry.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9010942150498ed449edd22b58bf92c2
+    m_Address: Assets/Prefab/Unit/Infantry.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 112a4500c2b30534b954fc5a7fddbc0f
+    m_Address: "Assets/Prefab/Unit/\u5385\u5B50\u90FD.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ef1f7edb39cd894d976919723039194
+    m_Address: "Assets/Prefab/Unit/\u94F6\u67AA\u6548\u8282\u519B.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 59ed42fb1a27cba468cf6bdc4854cbee
+    m_Address: "Assets/Prefab/Unit/\u957F\u76F4\u519B.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 291b989e2f7ed4e49babf32cc273e20c
+    m_Address: "Assets/Prefab/Unit/\u9E26\u519B.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 4ae8bb2efda2ace4a9dc654f77048e0a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: f82fb3a24dc024a42a36b1eedc2a7b4f, type: 2}
+    - {fileID: 11400000, guid: 2487108243593524a8b87f60ca125c49, type: 2}

@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Army
+  - LoadingPanel
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: BG
+    uniqueID: 2643830285
+    locked: 0
+  - name: New Layer 2
+    uniqueID: 172831643
+    locked: 0
+  - name: New Layer 3
+    uniqueID: 1620463693
+    locked: 0
+  - name: HexGrid
+    uniqueID: 2508515749
+    locked: 0
+  - name: Army
+    uniqueID: 960608201
+    locked: 0
+  - name: New Layer 7
+    uniqueID: 2632019321
+    locked: 0
+  - name: NoticeUI
+    uniqueID: 1312508707
+    locked: 0
+  - name: New Layer 8
+    uniqueID: 235558931
+    locked: 0

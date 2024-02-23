@@ -1,0 +1,132 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 718ed5336567de84b930151002e833fb, type: 3}
+  m_Name: LKY
+  m_EditorClassIdentifier: 
+  m_Guid: ecad28386ede0047959f7af6e433d171
+  FactionTag: LKY
+  FactionName: "\u674E\u514B\u7528"
+  FactionPosition: "\u6CB3\u897F\u8282\u5EA6\u4F7F"
+  FactionDes: "\u674E\u514B\u7528,\u672C\u59D3\u6731\u90AA,\u53D7\u5510\u5929\u5B50\u8D50\u674E\u59D3,\u7EF0\u53F7\u72EC\u773C\u9F99,\u98DE\u864E\u5B50,\u6C99\u9640\u65CF\u4EBA,\u662F\u4E2D\u56FD\u5510\u671D\u672B\u5E74\u6700\u5F3A\u5927\u7684\u8282\u5EA6\u4F7F\u4E4B\u4E00"
+  FactionColor: {r: 0.7924528, g: 0.092701994, b: 0.092701994, a: 1}
+  factionType: 2
+  Rivals:
+  - {fileID: 11400000, guid: 0c2db903c7a4efe4ca20e6de7958c18c, type: 2}
+  AbleArmyUnit:
+  - {fileID: 11400000, guid: 2783b33b53c32d74ba72b328cf547469, type: 2}
+  - {fileID: 11400000, guid: 9010942150498ed449edd22b58bf92c2, type: 2}
+  - {fileID: 11400000, guid: 291b989e2f7ed4e49babf32cc273e20c, type: 2}
+  CapitalProvinceID: 1660
+  ProvincesInBeginning:
+  - 1450
+  - 1451
+  - 1452
+  - 1491
+  - 1492
+  - 1493
+  - 1494
+  - 1533
+  - 1534
+  - 1535
+  - 1536
+  - 1537
+  - 1574
+  - 1575
+  - 1576
+  - 1577
+  - 1578
+  - 1579
+  - 1616
+  - 1492
+  - 1492
+  - 1492
+  - 1492
+  - 1616
+  - 1617
+  - 1618
+  - 1619
+  - 1620
+  - 1621
+  - 1657
+  - 1658
+  - 1659
+  - 1660
+  - 1661
+  - 1662
+  - 1663
+  - 1700
+  - 1701
+  - 1702
+  - 1703
+  - 1704
+  - 1705
+  - 1706
+  - 1741
+  - 1742
+  - 1743
+  - 1744
+  - 1745
+  - 1746
+  - 1747
+  - 1784
+  - 1785
+  - 1786
+  - 1787
+  - 1788
+  - 1789
+  - 1826
+  - 1827
+  - 1828
+  - 1829
+  - 1830
+  - 1831
+  - 1869
+  - 1870
+  - 1871
+  - 1872
+  - 1873
+  - 1874
+  - 1911
+  - 1912
+  - 1913
+  - 1914
+  - 1915
+  - 1916
+  - 1953
+  - 1954
+  - 1955
+  - 1956
+  - 1957
+  - 1958
+  - 1959
+  - 1994
+  - 1995
+  - 1996
+  - 1997
+  - 1998
+  - 1999
+  - 2000
+  - 2035
+  - 2036
+  - 2037
+  - 2038
+  - 2039
+  - 2040
+  - 2041
+  - 2042
+  FactionGenerals:
+  - {fileID: 11400000, guid: c4a86a8e383c1384398e0aea8707b99e, type: 2}
+  - {fileID: 11400000, guid: 4dd5243e798ecbc4daa66f42ab24adca, type: 2}
+  - {fileID: 11400000, guid: 6142671768a5c6c4591735a5edb23516, type: 2}
+  - {fileID: 11400000, guid: 70bffedca42a12d42b2363794f47d7f6, type: 2}
+  - {fileID: 11400000, guid: d2ebcf8eb549de447a8fbe2ddcaccf87, type: 2}
+  - {fileID: 11400000, guid: b2ebd0f5dfd3ee14ba62ef43acbd0880, type: 2}

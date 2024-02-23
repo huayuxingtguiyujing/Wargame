@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da83379dc6e1b7e42b227a5c225d850d, type: 3}
+  m_Name: "\u5B98\u5E9C"
+  m_EditorClassIdentifier: 
+  BuildingName: Government
+  BuildingChineseName: "\u5B98\u5E9C"
+  BuildingDesc: "\u653F\u6743\u5728\u5730\u65B9\u7684\u5B98\u5458\u9A7B\u5730\uFF0C\u80FD\u589E\u52A0\u5F53\u5730\u6CBB\u5B89"
+  ProvinceModify:
+    MoveCostModify: 0
+    ArmyLossModify: 0
+    TaxModify: 0
+    GrainModify: 0
+    MaintenModify: 0
+    PublicSafetyModify: 0
+    AdminEfficiencyModify: 0
+    ApprovalRatingModify: 0
+    LocalSupplyAdd: 0
+  CostMoney: 10000
+  CostTime: 10
+  MaintenCost: 1000
+  IsSupplyCenter: 0

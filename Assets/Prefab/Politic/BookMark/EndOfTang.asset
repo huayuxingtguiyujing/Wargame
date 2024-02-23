@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb423af509dc1e49a6b92ab5211a521, type: 3}
+  m_Name: EndOfTang
+  m_EditorClassIdentifier: 
+  startTime: 900
+  endTime: 906
+  bookMarkName: 900
+  bookMarkNotice: "\u9EC4\u5DE2\u8D77\u4E49\u540E,\u5510\u738B\u671D\u4E0E\u5730\u65B9\u85E9\u9547\u7684\u6700\u540E\u4E00\u4E1D\u5E73\u8861\u5DF2\u88AB\u6253\u7834,\u5510\u672B\u7684\u4E71\u4E16\u5DF2\u7ECF\u5F00\u542F,\u519B\u9600\u3001\u4E49\u519B\u3001\u7687\u5E1D\u3001\u5F02\u65CF\u90FD\u5728\u4E3A\u4E86\u4E2D\u534E\u5927\u5730\u7684\u6743\u529B\u5F52\u5C5E\u800C\u6D41\u8840\u53AE\u6740,\u4E1C\u65B9\u5927\u5730\u7684\u591C\u5E55\u5DF2\u7ECF\u964D\u4E34"
+  BookMarkFactionInfo:
+  - {fileID: 11400000, guid: 6110dc701d6cda1469f3cf9e8219ad9f, type: 2}
+  - {fileID: 11400000, guid: 0c2db903c7a4efe4ca20e6de7958c18c, type: 2}
+  - {fileID: 11400000, guid: 5cfc8ca536fb0a945adbd0f94548b829, type: 2}
+  - {fileID: 11400000, guid: a7625712c8977bd438de1c22d9ab60b7, type: 2}
+  - {fileID: 11400000, guid: 0b08b1dd2dcc5d44495c4be41dac93dd, type: 2}
+  - {fileID: 11400000, guid: addbb0a6bf4f12646ae44cdfe284c5c9, type: 2}
+  RecommandFactionInfo:
+  - {fileID: 11400000, guid: 0c2db903c7a4efe4ca20e6de7958c18c, type: 2}
+  - {fileID: 11400000, guid: 6110dc701d6cda1469f3cf9e8219ad9f, type: 2}

@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: GeneralObject
+  m_EditorClassIdentifier: 
+  m_GroupName: GeneralObject
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 9b0f56c59feb68c4cb166c5af3238234
+  m_SerializeEntries:
+  - m_GUID: 4dd5243e798ecbc4daa66f42ab24adca
+    m_Address: Assets/Prefab/General/LCX_General.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c4a86a8e383c1384398e0aea8707b99e
+    m_Address: Assets/Prefab/General/LKY_General.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: edf554aba4bc92a4882f77dc4fbe3ab8
+    m_Address: Assets/Prefab/General/YSH_General.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7b71b83760c3a0b48adc47e79c4ef52b
+    m_Address: Assets/Prefab/General/ZW_General.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 4ae8bb2efda2ace4a9dc654f77048e0a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: df8135a22d20d2d4c89741ad018879aa, type: 2}
+    - {fileID: 11400000, guid: 5199c11e3aa7b6a438ee5d5acd0201b7, type: 2}

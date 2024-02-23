@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: LeaderProfile
+  m_EditorClassIdentifier: 
+  m_GroupName: LeaderProfile
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 1ad9deaee1c4dc94a831591b72890d27
+  m_SerializeEntries:
+  - m_GUID: 31f147ce094fc8f49944b5263a339ecd
+    m_Address: Assets/Sprite/Leaders/LKY_Leader.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93824b5365d79f543af9bf98f0e284cc
+    m_Address: Assets/Sprite/Leaders/LRG_Leader.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f0bcb82780b3ed49b17854af2ef4fbf
+    m_Address: Assets/Sprite/Leaders/WCR_Leader.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cff870483a149134296ddda3dca68d67
+    m_Address: Assets/Sprite/Leaders/WR_Leader.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 22c5d95bc17a1e24da123cc0043ecb4d
+    m_Address: Assets/Sprite/Leaders/WSF_Leader.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 26394cd033e2b98428ccd659eb2cd1a4
+    m_Address: Assets/Sprite/Leaders/ZW_Leader.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf5fdd11c5be79f49a6884d737336151
+    m_Address: Assets/Sprite/Leaders/Noleader2_Leader.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 33105d6fcc5b78e4a816e484a9065666
+    m_Address: Assets/Sprite/Leaders/Noleader_Leader.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 4ae8bb2efda2ace4a9dc654f77048e0a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 54d6dfc61f4338248bc814f98cb8fc3e, type: 2}
+    - {fileID: 11400000, guid: 38ba170e41d6d7e46844e8d69a9c3d15, type: 2}

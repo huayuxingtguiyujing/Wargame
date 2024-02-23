@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Buildings
+  m_EditorClassIdentifier: 
+  m_GroupName: Buildings
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 5c2d4fa15b26ec54292782db4aba4eea
+  m_SerializeEntries:
+  - m_GUID: 6b4b81773bab0b14a8fc98d16c88d224
+    m_Address: "Assets/Prefab/Building/\u5B98\u9053.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 462cbcf5a875bd044b7c232684b4e4ba
+    m_Address: "Assets/Prefab/Building/\u7CAE\u4ED3.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: edfee8e02aba3f4439123476b2f2de80
+    m_Address: "Assets/Prefab/Building/\u8865\u7ED9\u4E2D\u5FC3.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 4ae8bb2efda2ace4a9dc654f77048e0a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 3eecf91a0b789f443988f89bd235efd0, type: 2}
+    - {fileID: 11400000, guid: c1123ed05953cf04d880ae599bbc06cc, type: 2}

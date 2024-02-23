@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 718ed5336567de84b930151002e833fb, type: 3}
+  m_Name: WSF
+  m_EditorClassIdentifier: 
+  m_Guid: e7c9243df017db408f80153afb2379b9
+  FactionTag: WSF
+  FactionName: "\u738B\u5E08\u8303"
+  FactionPosition: "\u9752\u5DDE\u8282\u5EA6\u4F7F"
+  FactionDes: 
+  FactionColor: {r: 0, g: 1, b: 0.23338318, a: 1}
+  factionType: 0
+  Rivals: []
+  AbleArmyUnit: []
+  CapitalProvinceID: 1630
+  ProvincesInBeginning:
+  - 1755
+  - 1713
+  - 1714
+  - 1670
+  - 1671
+  - 1672
+  - 1628
+  - 1629
+  - 1630
+  - 1631
+  - 1632
+  - 1633
+  - 1634
+  - 1635
+  - 1674
+  - 1675
+  - 1676
+  - 1677
+  - 1678
+  - 1679
+  - 1718
+  - 1719
+  - 1585
+  - 1586
+  - 1587
+  - 1588
+  - 1589
+  - 1590
+  - 1591
+  - 1547
+  - 1548
+  - 1549
+  - 1550
+  - 1504
+  - 1505
+  - 1506
+  - 1463
+  - 1464
+  - 1421
+  - 1636
+  - 1637
+  - 1592
+  FactionGenerals:
+  - {fileID: 11400000, guid: eee0c7eacb8957149a3b447751a560a6, type: 2}

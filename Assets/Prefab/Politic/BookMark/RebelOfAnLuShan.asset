@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb423af509dc1e49a6b92ab5211a521, type: 3}
+  m_Name: RebelOfAnLuShan
+  m_EditorClassIdentifier: 
+  startTime: 755
+  endTime: 763
+  bookMarkName: "\u5B89\u53F2\u4E4B\u4E71"
+  bookMarkNotice: "\u5F00\u5143\u5929\u5B9D\u56DB\u5341\u8F7D\uFF0C\u5510\u5E1D\u56FD\u4ECD\u7136\u7A33\u636E\u5929\u4E0B\u3002\u6C5F\u5357\u7684\u8D22\u8D4B\u3001\u4E2D\u539F\u7684\u7CAE\u98DF\u3001\u5DDD\u8700\u7684\u4E1D\u7EF8\uFF0C\u897F\u57DF\u7684\u80E1\u5546\uFF0C\u56DB\u65B9\u7684\u9063\u5510\u4F7F\u6E90\u6E90\u4E0D\u65AD\u8F93\u5165\u5173\u4E2D\uFF0C\u4ECE\u5357\u8BCF\u548C\u601B\u7F57\u65AF\u4F20\u6765\u7684\u8D25\u7EE9\u4F3C\u4E4E\u4E5F\u672A\u80FD\u8BA9\u957F\u5B89\u7684\u6B4C\u821E\u505C\u6B47\uFF0C\u5929\u5B50\u5BAB\u9619\u6B4C\u821E\u4E0D\u4F11\uFF0C\u957F\u5B89\u7684\u8857\u5E02\u4F9D\u7136\u7E41\u534E\uFF0C\u4EBA\u4EEC\u90FD\u76F8\u4FE1\u76DB\u4E16\u5C06\u6C38\u8FDC\u6301\u7EED\u4E0B\u53BB\uFF0C\u76F4\u5230\u5E7D\u5DDE\u7684\u6218\u9F13\u4F20\u6765\uFF0C\u6253\u788E\u4E86\u865A\u5984\u7684\u76DB\u4E16\u5927\u68A6"
+  BookMarkFactionInfo:
+  - {fileID: 11400000, guid: cdc22006930a7084aad6af04a43108aa, type: 2}
+  - {fileID: 11400000, guid: 55b3d0abaa1bd4b4baab11c4290dd30e, type: 2}
+  RecommandFactionInfo:
+  - {fileID: 11400000, guid: cdc22006930a7084aad6af04a43108aa, type: 2}
+  - {fileID: 11400000, guid: 55b3d0abaa1bd4b4baab11c4290dd30e, type: 2}

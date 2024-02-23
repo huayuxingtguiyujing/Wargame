@@ -1,0 +1,4 @@
+repository "WarGame_True@wechat_os_qy0733zgxow_ggaur4koob8xs@cloud.cn"
+  path "/"
+    br "/main"
+    co "/main"

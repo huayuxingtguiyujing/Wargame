@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 718ed5336567de84b930151002e833fb, type: 3}
+  m_Name: WCR
+  m_EditorClassIdentifier: 
+  m_Guid: 6f17fc363a8c2b4392b4ec341cb2a186
+  FactionTag: WCR
+  FactionName: "\u738B\u91CD\u8363"
+  FactionPosition: "\u6CB3\u4E2D\u8282\u5EA6\u4F7F"
+  FactionDes: 
+  FactionColor: {r: 0.5087083, g: 0.8584906, b: 0.092328176, a: 1}
+  factionType: 0
+  Rivals: []
+  AbleArmyUnit: []
+  CapitalProvinceID: 1448
+  ProvincesInBeginning:
+  - 1615
+  - 1573
+  - 1531
+  - 1532
+  - 1489
+  - 1490
+  - 1447
+  - 1448
+  - 1449
+  - 1404
+  - 1405
+  - 1406
+  - 1407
+  FactionGenerals:
+  - {fileID: 11400000, guid: 482e525848b816746a0235d744f0921e, type: 2}
