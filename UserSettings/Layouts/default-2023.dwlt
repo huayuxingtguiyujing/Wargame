@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 92
+  controlID: 447
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 48
+  controlID: 402
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 49
+  controlID: 403
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -252,7 +252,7 @@ MonoBehaviour:
   - {fileID: 18}
   - {fileID: 19}
   m_Selected: 0
-  m_LastSelected: 2
+  m_LastSelected: 1
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -300,8 +300,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 239.2
-    y: 73.6
+    x: 240.2
+    y: 19
     width: 1001.2
     height: 460.6
   m_SerializedDataModeController:
@@ -418,9 +418,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 1aebffff
-      m_LastClickedID: -5350
-      m_ExpandedIDs: 12f5ffff16fbffff5c0e0100
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 56fbfdfff253fefff255feff5057feff00ec0b00
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -868,9 +868,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 510.3424, y: 272.27124, z: 0.08193588}
+    m_Target: {x: 886.6363, y: 221.226, z: 17.181908}
     speed: 2
-    m_Value: {x: 510.3424, y: 272.27124, z: 0.08193588}
+    m_Value: {x: 886.6363, y: 221.226, z: 17.181908}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -918,11 +918,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.01199743, y: -0.019497463, z: -0.00023397918, w: 0.99973786}
     speed: 2
-    m_Value: {x: 0.011997431, y: 0.019497465, z: 0.0002339792, w: -0.99973786}
+    m_Value: {x: -0.011997431, y: -0.019497465, z: -0.0002339792, w: 0.9997379}
   m_Size:
-    m_Target: 291.22357
+    m_Target: 295.63562
     speed: 2
-    m_Value: 291.22357
+    m_Value: 295.63562
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1267,7 +1267,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/OtherPlugin/TextMesh Pro/WarGame
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1277,16 +1277,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/OtherPlugin/TextMesh Pro/WarGame
   m_LastFoldersGridSize: -1
   m_LastProjectPath: F:\Users\unity\WarGame_True\Wargame
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 6e780000
-    m_LastClickedID: 30830
-    m_ExpandedIDs: 00000000107800001278000014780000187800001a7800001c7800002278000000ca9a3b
+    scrollPos: {x: 0, y: 299.80002}
+    m_SelectedIDs: 164a0000
+    m_LastClickedID: 18966
+    m_ExpandedIDs: 00000000ea420000a6430000ee44000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1314,7 +1314,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000010780000127800001478000016780000187800001a7800001c7800001e7800002078000022780000
+    m_ExpandedIDs: 00000000ea42000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
