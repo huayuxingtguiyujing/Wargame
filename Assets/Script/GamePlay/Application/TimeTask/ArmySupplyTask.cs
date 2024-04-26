@@ -67,7 +67,7 @@ namespace WarGame_True.GamePlay.Application.TimeTask {
                 // MODIFIED: 应当在 FactionResource 中轮询每只军队，判断是否能进行补给
                 // 到达补给时间，执行输送补给逻辑
                 //PoliticLoader.Instance.GetFactionByTag(SupplyTarget.ArmyData.ArmyTag).PaySupply(SupplyTarget);
-                Debug.Log("成功获取到了补给: " + SupplyTarget.ArmyData.armyName + ", 所在省份" + SupplyTarget.CurrentProvince.provinceID);
+                //Debug.Log("成功获取到了补给: " + SupplyTarget.ArmyData.armyName + ", 所在省份" + SupplyTarget.CurrentProvince.provinceID);
             }
         }
 

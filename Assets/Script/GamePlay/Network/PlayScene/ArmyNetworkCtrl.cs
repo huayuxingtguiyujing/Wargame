@@ -113,6 +113,7 @@ namespace WarGame_True.GamePlay.ArmyPart {
 
             // 客户端不需要进行任何操作 等待服务器即可
 
+            return;
         }
 
         [ClientRpc]

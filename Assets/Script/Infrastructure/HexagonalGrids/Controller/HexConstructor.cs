@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using WarGame_True.Infrastructure.HexagonGrid.DataStruct;
 using WarGame_True.Infrastructure.HexagonGrid.MapObject;
@@ -18,6 +19,11 @@ namespace WarGame_True.Infrastructure.HexagonGrid.Controller {
         [SerializeField] private Transform originPoint;
         [SerializeField] private Vector2 Size;
 
+        [Header("柏林噪声")]
+        [SerializeField] Renderer perlinRenderer;
+
+        PerlinGenerator perlinGenerator;
+
         [Header("作为prefab的父类物体")]
         [SerializeField] private Transform centerTransform;
         [SerializeField] private Transform pointTransform;
@@ -29,20 +35,21 @@ namespace WarGame_True.Infrastructure.HexagonGrid.Controller {
         [SerializeField] private GameObject hexGridPrefab;
 
         //当前的六边形 网格物体
-        private List<Hexagon> currentHexagons = new List<Hexagon>();
-        public List<Hexagon> CurrentHexagons { get => currentHexagons; private set => currentHexagons = value; }
+        private List<Hexagon> CurrentHexagons;
+
         ////当前的 地理位置 - 省份 的映射
-        //private Dictionary<Vector3, HexGrid> currentPosHex = new Dictionary<Vector3, HexGrid>();
-        //public Dictionary<Vector3, HexGrid> CurrentPosHex {
-        //    get => currentPosHex;
-        //    private set => currentPosHex = value;
-        //}
+        public Dictionary<Vector3, HexGrid> currentPosHex = new Dictionary<Vector3, HexGrid>();
+        public Dictionary<Vector3, HexGrid> CurrentPosHex { get => currentPosHex; private set => currentPosHex = value;}
+
         //当前的 ID - 省份 的映射
-        private Dictionary<uint, HexGrid> currentIDHex = new Dictionary<uint, HexGrid>();
-        public Dictionary<uint, HexGrid> CurrentIDHex {
-            get => currentIDHex;
-            private set => currentIDHex = value;
-        }
+        public Dictionary<uint, HexGrid> currentIDHex = new Dictionary<uint, HexGrid>();
+        public Dictionary<uint, HexGrid> CurrentIDHex { get => currentIDHex; private set => currentIDHex = value; }
+
+        // 当前的河流
+        [Header("河流")]
+        public List<River> CurrentRiver;
+
+        public List<HexGrid> RiverPathGenerator;
 
 
         public void UpdateCurrentHexProvince() {
@@ -51,11 +58,12 @@ namespace WarGame_True.Infrastructure.HexagonGrid.Controller {
             HexGrid[] hexGrids = hexGridTransform.GetComponentsInChildren<HexGrid>();
             foreach (HexGrid hexGrid in hexGrids)
             {
-                //if (CurrentPosHex.ContainsKey(hexGrid.hexPosition)) {
-                //    CurrentPosHex[hexGrid.hexPosition] = hexGrid;
-                //} else {
-                //    CurrentPosHex.Add(hexGrid.hexPosition, hexGrid);
-                //}
+                if (CurrentPosHex.ContainsKey(hexGrid.hexPosition)) {
+                    CurrentPosHex[hexGrid.hexPosition] = hexGrid;
+                } else {
+                    CurrentPosHex.Add(hexGrid.hexPosition, hexGrid);
+                }
+
                 if (CurrentIDHex.ContainsKey(hexGrid.HexID)) {
                     CurrentIDHex[hexGrid.HexID] = hexGrid;
                 } else {
@@ -84,73 +92,139 @@ namespace WarGame_True.Infrastructure.HexagonGrid.Controller {
         }
 
         public void InitHexagonalGridScene(Dictionary<uint, Hexagon> hexeIDDic) {
-            /* // 不用在这记了
-             * //记录 当前生成的网格地图
-            CurrentHexagons = hexes;*/
+            // 不用在这记了
+            //记录 当前生成的网格地图
+            CurrentHexagons = hexeIDDic.Values.ToList();
 
+            Layout layout = GetScreenLayout();
+
+            //初始化地图网格物体
+            foreach (KeyValuePair <uint, Hexagon> IDHexPair in hexeIDDic)
+            {
+                CreateHexagon(layout, IDHexPair.Key, IDHexPair.Value);
+            }
+
+            // 设置地图网格的邻居节点
+            SetHexNeighbor(CurrentHexagons, CurrentPosHex);
+
+            // 生成河流？
+
+            // 生成 Mesh 网格
+            RefreshHexagons();
+        }
+
+        private Layout GetScreenLayout() {
             //生成屏幕布局类
             Vector2 startPoint = new Vector2(originPoint.position.x, originPoint.position.y);
             Layout layout = new Layout(
                 Orientation.Layout_Pointy, new Point(Size.x, Size.y), new Point(startPoint.x, startPoint.y)
             );
-
-            //初始化网格物体
-            foreach (KeyValuePair <uint, Hexagon> IDHexPair in hexeIDDic)
-            {
-                CreateHexagon(layout, IDHexPair.Key, IDHexPair.Value);
-            }
+            return layout;
         }
 
         /// <summary>
         /// 根据 Hex 数据类 创建hex物体
         /// </summary>
         private void CreateHexagon(Layout layout, uint hexID, Hexagon hex) {
-            //获得中心
-            Point center = hex.Hex_To_Pixel(layout, hex);
-            Vector3 centerPoint = (Vector3)center;
-            //Debug.Log("输出中心坐标：" + centerPoint);
-
-            /*//NOTICE:创建中心 并设置位置 勿删
-            GameObject centerObject = Instantiate(centerPrefab, centerTransform);
-            centerObject.transform.position = centerPoint;*/
-
-            //获得顶点
-            List<Point> vertexs = hex.Polygon_Corners(layout, hex);
-            //Debug.Log("该六边形顶点数目：" + vertexs.Count);
-
-            //获得六边形图块的半径 创建图块 并设置各项参数
-            float R = Vector3.Distance(centerPoint, (Vector3)vertexs[0]);
+            // 创建并且初始化（基于mesh）hexgrid
             GameObject hexGridObject = Instantiate(hexGridPrefab, hexGridTransform);
-            hexGridObject.transform.position = centerPoint;
             HexGrid hexGrid = hexGridObject.GetComponent<HexGrid>();
-            hexGrid.InitHexGird(R, hexID, hex);
+            hexGrid.InitHexGrid_Mesh(layout, hexID, hex);
 
             //加入到映射当中
             CurrentIDHex.Add(hexID, hexGrid);
-
-            //Debug.Log("当前六边形的半径：" + R.ToString());
-
-            /*//NOTICE:以下是创建六边形各个顶点代码 勿删
-            foreach (Point point in vertexs) {
-                //创建顶点物体 并设置位置
-                Vector3 vertexVector = (Vector3)point;
-                //Debug.Log("输出顶点坐标：" + vertexVector);
-
-                //创建中心 并设置位置
-                GameObject pointObject = Instantiate(pointPrefab, pointTransform);
-                pointObject.transform.position = vertexVector;
-            }*/
+            CurrentPosHex.Add(hexGrid.HexIntPosition, hexGrid);
         }
 
-        /// <summary>
-        /// 清楚掉已经生成的hex object
-        /// </summary>
+        private void SetHexNeighbor(List<Hexagon> CurrentHexagons, Dictionary<Vector3, HexGrid> CurrentPosHex) {
+            for (int i = 0; i < CurrentHexagons.Count; i++) {
+                for (int j = 0; j < 6; j++) {
+                    HexDirection direction = (HexDirection)j;
+                    Hexagon neighbor = CurrentHexagons[i].Hex_Neighbor(direction);
+                    if (CurrentPosHex.ContainsKey(CurrentHexagons[i]) && CurrentPosHex.ContainsKey(neighbor)) {
+                        //CurrentPosHex[CurrentHexagons[i]].NeighbourGrids[j] = CurrentPosHex[neighbor];
+                        CurrentPosHex[CurrentHexagons[i]].NeighbourGrids.Add(CurrentPosHex[neighbor]);
+                    } else {
+                        // NOTICE: 一定要加null作为占位符，否则顺序会出错
+                        CurrentPosHex[CurrentHexagons[i]].NeighbourGrids.Add(null);
+                    }
+                }
+            }
+        }
+
+        public void RefreshHexagons() {
+            //生成屏幕布局类
+            Vector2 startPoint = new Vector2(originPoint.position.x, originPoint.position.y);
+            Layout layout = new Layout(
+                Orientation.Layout_Pointy, new Point(Size.x, Size.y), new Point(startPoint.x, startPoint.y)
+            );
+
+            // 生成 Mesh 网格(必须在设置邻居后调用)
+            foreach (KeyValuePair<uint, HexGrid> IDHexPair in CurrentIDHex) {
+                IDHexPair.Value.DrawHexGridMesh(layout, IDHexPair.Value.hexagon);
+            }
+        }
+
         public void ClearHexObject() {
             centerTransform.ClearObjChildren();
             pointTransform.ClearObjChildren();
             hexGridTransform.ClearObjChildren();
-            //CurrentPosHex.Clear();
+            CurrentPosHex.Clear();
             CurrentIDHex.Clear();
+        }
+
+
+        public void GenerateRiver() {
+            if(CurrentRiver == null) {
+                CurrentRiver = new List<River>();
+            }
+            CurrentRiver.Add(new River(RiverPathGenerator));
+            //RiverPathGenerator.Clear();
+        }
+
+
+        /// <summary>
+        /// 生成柏林噪声纹理
+        /// </summary>
+        public void GeneratePerlinTexture(int width, int height, float scale) {
+            if(perlinGenerator == null) {
+                perlinGenerator = new PerlinGenerator();
+            }
+            perlinGenerator.GeneratePerlinNoise(10, 10, 1.0f);
+            perlinGenerator.GenerateTexture(perlinRenderer);
+            
+        }
+
+        /// <summary>
+        /// 将柏林噪声扰动应用于地图网格上
+        /// </summary>
+        public void DisturbGridMap() {
+
+            if (perlinGenerator == null) {
+                Debug.Log("未生成perlinGenerator");
+                return;
+            }
+
+            // 需要得到生成网格地图的 minPoint 和 maxPoint 才能插值
+            // 进行扰动
+
+            // TODO: 目前的扰动似乎有问题，扰动效果不是很明显
+            foreach (KeyValuePair<uint, HexGrid> IDHexPair in CurrentIDHex) {
+
+                //Debug.Log(IDHexPair.Value.vertices.Count);
+                for (int i = 0; i < IDHexPair.Value.vertices.Count; i++) {
+                    Vector3 truePostion = IDHexPair.Value.vertices[i] + IDHexPair.Value.transform.position;
+                    Vector4 sample = perlinGenerator.SampleNosie(truePostion);
+                    IDHexPair.Value.vertices[i] = new Vector3(
+                        IDHexPair.Value.vertices[i].x,
+                        IDHexPair.Value.vertices[i].y,
+                        IDHexPair.Value.vertices[i].z + sample.z - 0.5f
+                    );
+                    //Debug.Log(IDHexPair.Value.vertices[i]);
+                }
+                IDHexPair.Value.RefreshMesh();
+
+            }
         }
 
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using WarGame_True.GamePlay.Application.TimeTask;
+using WarGame_True.Infrastructure.Map.Provinces;
 
 namespace WarGame_True.GamePlay.ArmyPart {
     /// <summary>
@@ -14,11 +15,14 @@ namespace WarGame_True.GamePlay.ArmyPart {
         public uint armyNum = 1000;             //招募的士兵数目
         public ArmyUnitData armyUnitData;       //正在招募的士兵种类
 
-        public RecruitTask(uint costHour, ArmyUnitData armyUnitData) : base(TaskType.Day, costHour) {
+        public Province GatherTarget;
+
+        public RecruitTask(uint costHour, ArmyUnitData armyUnitData, Province GatherTarget) : base(TaskType.Day, costHour) {
             //this.costDay = costHour + 10;       // 基础招募时间: 10 (后面最好改掉)
             //this.lastDay = costHour + 10;
             this.armyNum = 1000;
             this.armyUnitData = armyUnitData;
+            this.GatherTarget = GatherTarget;
 
             IsOver = false;
         }

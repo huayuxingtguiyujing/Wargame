@@ -58,7 +58,7 @@ namespace WarGame_True.GamePlay.ArmyPart {
         public uint armyCostManpower = 1000;
         public uint armyCurrentMappower = 1000;
         [Tooltip("军队维护费用")]
-        public uint armyReinforcementCost = 100;
+        public uint armyReinforcementCost = 1000;
 
         public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter {
             serializer.SerializeValue(ref armyUnitName);

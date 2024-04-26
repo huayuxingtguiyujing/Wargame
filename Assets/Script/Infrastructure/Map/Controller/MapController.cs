@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using WarGame_True.GamePlay.ArmyPart;
 using WarGame_True.GamePlay.Politic;
+using WarGame_True.Infrastructure.AI;
 using WarGame_True.Infrastructure.HexagonGrid.Controller;
 using WarGame_True.Infrastructure.HexagonGrid.DataStruct;
 using WarGame_True.Infrastructure.HexagonGrid.MapObject;
@@ -52,8 +53,98 @@ namespace WarGame_True.Infrastructure.Map.Controller {
             return null;
         }
 
+        public Province GetProvinceByPos(Vector3 pos) {
+            if (posProvinceDic.ContainsKey(pos)) {
+                return posProvinceDic[pos];
+            }
+            return null;
+        }
+
+        public bool ExistProvinceByPos(Vector3 pos) {
+            return posProvinceDic.ContainsKey(pos);
+        }
+
+        /// <summary>
+        /// 判断省份是否在 边境/前线 上
+        /// </summary>
+        public bool IsProvinceInFr(Province province, ref string NearTag) {
+            List<Province>  rec = GetNeighbors(province);
+            foreach (var neighbor in rec)
+            {
+                // 如果临近的省份 不被该省份的控制者控制，则省份在边境上
+                if (!neighbor.UnderTagControl(province.provinceData.CurrentControlTag)) {
+                    NearTag = neighbor.provinceData.CurrentControlTag;
+                    return true;
+                }
+            }
+            NearTag = "";
+            return false;
+        }
+
+        /// <summary>
+        /// 检查省份临近两格的其他省份,以判断该省份是否处于前线,周围是否有敌人
+        /// </summary>
+        /// <param name="tag">要检测的Tag，不一定是省份拥有者</param>
+        /// <param name="NearTag">离该省份相对tag而言最近的其他Tag</param>
+        /// <param name="enemyValue">敌人对该地的威胁值（等于当地敌人数目，按范围衰减）</param>
+        /// <param name="province">要查询的省份</param>
+        /// <returns></returns>
+        public bool CheckProvNeibor(string tag, ref string NearTag, ref int enemyValue, Province province) {
+            enemyValue = 0;
+
+            bool ans = false;
+            // 目前仅向外搜索2格
+            int step = 2;
+            int startStep = step;
+            // 已经访问过的省份
+            List<Vector3> hasVisited = new List<Vector3>();
+            // 正在访问的省份
+            Stack<Province> curVisiting = new Stack<Province>();
+            curVisiting.Push(province);
+
+            while (step > 0 && curVisiting.Count > 0) {
+                
+                int curCount = curVisiting.Count;
+                while(curCount > 0) {
+                    Province rec = curVisiting.Pop();
+                    // 获得现在正在访问的省份 的临近省份，并设置该省份已被访问
+                    hasVisited.Add(rec.provincePosition);
+                    List<Province> neighbours = GetNeighbors(rec);
+
+                    foreach (var neighbor in neighbours)
+                    {
+                        // 关键逻辑: 判断该省份是否是属于敌对Tag控制
+                        if (!neighbor.UnderTagControl(tag)) {
+                            if (step >= startStep) {
+                                // 距离1格
+                                enemyValue += neighbor.GetHostileArmy();
+                            } else if (step >= startStep - 1) {
+                                // 距离2格
+                                enemyValue += neighbor.GetHostileArmy() / 2;
+                            }
+
+                            NearTag = neighbor.provinceData.CurrentControlTag;
+                            ans = true;
+                        }
+
+                        // 判断邻居省份是否被访问过,未被访问则加入栈
+                        if (!hasVisited.Contains(neighbor.provincePosition)) {
+                            curVisiting.Push(neighbor);
+                        }
+                    }
+                    curCount--;
+                }
+
+                step--;
+            }
+
+            NearTag = "";
+            return ans;
+        }
+
         #endregion
 
+        #region 初始化 地图省份
         public void InitMap() {
             Instance = this;
 
@@ -61,8 +152,7 @@ namespace WarGame_True.Infrastructure.Map.Controller {
             hexConstructor.UpdateCurrentHexProvince();
             Dictionary<uint, HexGrid> hexagonDic = hexConstructor.CurrentIDHex;
             //Debug.Log("-----------");
-            foreach (KeyValuePair<uint, HexGrid> keyValuePair in hexagonDic)
-            {
+            foreach (KeyValuePair<uint, HexGrid> keyValuePair in hexagonDic) {
                 GameObject valueObject = keyValuePair.Value.gameObject;
                 Province province;
 
@@ -102,16 +192,12 @@ namespace WarGame_True.Infrastructure.Map.Controller {
             //await provinceInject.ImportCSVToCurrentMap();
             provinceInject.ImportCSVToCurrentMap(provinceDataFile);
         }
-    
-        /// <summary>
-        /// 将省份分配到 对应的国家中,基于位置分配
-        /// </summary>
+
         public void InitTerritory_ByPos(List<Faction> BookMarkFactions) {
-            foreach (Faction faction in BookMarkFactions)
-            {
+            foreach (Faction faction in BookMarkFactions) {
                 string[] territory = faction.TerritoryInitString.ToArray();
                 //将string的坐标字符串转为province 加入到faction中
-                foreach(string territoryStr in territory) {
+                foreach (string territoryStr in territory) {
                     try {
                         string[] terPos = territoryStr.Split("_");
 
@@ -119,16 +205,16 @@ namespace WarGame_True.Infrastructure.Map.Controller {
                         if (terPos.Length != 3) continue;
 
                         Vector3 position = new Vector3(
-                            int.Parse(terPos[0]), 
-                            int.Parse(terPos[1]), 
+                            int.Parse(terPos[0]),
+                            int.Parse(terPos[1]),
                             int.Parse(terPos[2])
                         );
                         if (PosProvinceDic.ContainsKey(position)) {
                             //该地图存在 转为province,加入到当前控制领土中，同时设置省份被控制
                             faction.Territory.Add(PosProvinceDic[position]);
                             PosProvinceDic[position].SetProvinceControlStatu(
-                                faction.FactionInfo.FactionTag, 
-                                faction.FactionInfo.FactionTag, 
+                                faction.FactionInfo.FactionTag,
+                                faction.FactionInfo.FactionTag,
                                 faction.FactionInfo.FactionColor
                             );
                         }
@@ -140,6 +226,9 @@ namespace WarGame_True.Infrastructure.Map.Controller {
             }
         }
 
+        /// <summary>
+        /// 将省份分配到 对应的国家中，执行填色操作，基于省份ID进行分配
+        /// </summary>
         public void InitTerritory_ByID(List<Faction> BookMarkFactions) {
             foreach (Faction faction in BookMarkFactions) {
                 string[] territory = faction.TerritoryInitString.ToArray();
@@ -155,6 +244,7 @@ namespace WarGame_True.Infrastructure.Map.Controller {
                                 faction.FactionInfo.FactionTag,
                                 faction.FactionInfo.FactionColor
                             );
+
                         }
 
                     } catch {
@@ -163,6 +253,19 @@ namespace WarGame_True.Infrastructure.Map.Controller {
                 }
             }
         }
+
+        public void ShowProvinceTerrain() {
+            //更新并获取当前地图映射
+            hexConstructor.UpdateCurrentHexProvince();
+            Dictionary<uint, HexGrid> hexagonDic = hexConstructor.CurrentIDHex;
+
+            foreach (KeyValuePair<uint, HexGrid> keyValuePair in hexagonDic) {
+                Province province = keyValuePair.Value.GetComponent<Province>();
+                province.ShowProvinceTerrain();
+            }
+        }
+
+        #endregion
 
         #region 移动 单位 相关接口
         /// <summary>
@@ -193,7 +296,7 @@ namespace WarGame_True.Infrastructure.Map.Controller {
                     return ReconstructPath(cameFrom, current);
                 }
 
-                // 获取当前六边形相邻的六边形，具体实现取决于您的六边形网格结构
+                // 获取当前六边形相邻的六边形，具体实现取决于 六边形网格结构
                 List<Province> neighbors = GetNeighbors(current);
 
                 //Debug.Log("邻居数量：" + neighbors.Count);
@@ -333,18 +436,30 @@ namespace WarGame_True.Infrastructure.Map.Controller {
                 case MapMode.Normal:
 
                     break;
+                case MapMode.Terrain:
+                    ExitTerrainMode();
+                    break;
                 case MapMode.SupplyMap:
                     ExitSupplyMapMode();
                     break;
+                case MapMode.AIWeight:
+                    ExitAIWeightMode();
+                    break;
             }
-
+            Debug.Log($"From {CurMapMode} To {TargetMode}");
             // 根据目的地图模式，执行进入逻辑
             switch (TargetMode) {
                 case MapMode.Normal:
                     EnterNormalMapMode();
                     break;
+                case MapMode.Terrain:
+                    EnterTerrainMode();
+                    break;
                 case MapMode.SupplyMap:
                     EnterSupplyMapMode();
+                    break;
+                case MapMode.AIWeight:
+                    EnterAIWeightMode();
                     break;
             }
 
@@ -368,15 +483,51 @@ namespace WarGame_True.Infrastructure.Map.Controller {
             ArmyController.Instance.ShowArmySupplyLine();
 
             // TODO: 3.把处于补给线上的省份设置高亮
+
         }
 
         private void ExitSupplyMapMode() {
             MapSprite.color = Color.white;
-
             ArmyController.Instance.HideArmySupplyLine();
+        }
+
+        private void EnterAIWeightMode() {
+            // 地图亮度调暗
+            MapSprite.color = new Color(0.6f, 0.6f, 0.6f);
+
+            // 获取当前所有的 AI 
+            List<FactionAI> factionAIs = PoliticLoader.Instance.GetAllFactionAI();
+            foreach (FactionAI factionAI in factionAIs)
+            {
+                foreach(KeyValuePair<Vector3, ProvinceWeight> pair in factionAI.CurMapWeightDic) {
+                    string weightDesc = $"{factionAI.faction.FactionTag}:\n" +
+                        $"mil:{pair.Value.MilValue}\n" +
+                        $"eco:{pair.Value.EcoValue}";
+                    // 将省份权重更新到 Province 上
+                    GetProvinceByPos(pair.Key).ShowProvinceWeight(weightDesc);
+                }
+            }
+        }
+
+        private void UpdateAIWeightMode() {
 
         }
 
+        private void ExitAIWeightMode() {
+            MapSprite.color = Color.white;
+            // 重新填色
+            InitTerritory_ByID(PoliticLoader.Instance.BookMarkFactions);
+        }
+
+        private void EnterTerrainMode() {
+            // 根据地形 进行填色操作
+            ShowProvinceTerrain();
+        }
+
+        private void ExitTerrainMode() {
+            // 重新进行填色
+            InitTerritory_ByID(PoliticLoader.Instance.BookMarkFactions);
+        }
 
         #endregion
 
@@ -384,6 +535,8 @@ namespace WarGame_True.Infrastructure.Map.Controller {
 
     public enum MapMode {
         Normal,
-        SupplyMap
+        Terrain,
+        SupplyMap,
+        AIWeight
     }
 }

@@ -29,6 +29,32 @@ namespace WarGame_True.Infrastructure.Map.Provinces {
         private Terrain terrain;
         public Terrain Terrain { get => terrain; private set => terrain = value; }
 
+        public UnityEngine.Color GetTerrainColor() {
+            switch (terrain) {
+                case Terrain.Plain:
+                    return new UnityEngine.Color(0.4f, 0.8f, 0);    // 绿色
+                case Terrain.Hill:
+                    return new UnityEngine.Color(0.75f, 1, 0.24f);
+                case Terrain.Mountainous:
+                    return new UnityEngine.Color(0.55f, 0.53f, 0.3f);
+                case Terrain.Desert:
+                    return new UnityEngine.Color(0.93f, 0.86f, 0.51f);
+                case Terrain.Coast:
+                    return new UnityEngine.Color(0.4f, 0.58f, 0.93f);
+                case Terrain.Ocean:
+                    return new UnityEngine.Color(0.12f, 0.56f, 1);
+                default:
+                    return UnityEngine.Color.white;
+            }
+        //      Plain,              //平原
+        //      Hill,               //丘陵
+        //      Mountainous,        //山地
+        //      Desert,             //沙漠
+        //      City,               //城市
+        //      Coast,              //海岸
+        //      Ocean,              //海洋
+        }
+
         //是否有河流
         private bool hasRiver;
         public bool HasRiver { get => hasRiver; private set => hasRiver = value; }

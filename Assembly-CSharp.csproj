@@ -67,6 +67,7 @@
     <Compile Include="Assets\Script\GamePlay\UI\Panel\ArmyPanel.cs" />
     <Compile Include="Assets\Script\UnityService\Auth\WarAuthService.cs" />
     <Compile Include="Assets\Script\GamePlay\Army\ArmyGUI.cs" />
+    <Compile Include="Assets\Script\Infrastructure\BTree\Node\ActionNode.cs" />
     <Compile Include="Assets\Script\Infrastructure\Network\ConnectManage\NetworkStruct.cs" />
     <Compile Include="Assets\Script\UnityService\Lobby\LobbyApiService.cs" />
     <Compile Include="Assets\Script\GamePlay\Army\ArmyServerCtrl.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Assets\Script\Infrastructure\Map\Util\ProvinceHelper.cs" />
     <Compile Include="Assets\Script\GamePlay\States\GamePlayState.cs" />
     <Compile Include="Assets\Script\Infrastructure\Network\ConnectState\OfflineState.cs" />
+    <Compile Include="Assets\Script\Infrastructure\BTree\Conditional\ConditionNode.cs" />
     <Compile Include="Assets\Script\GamePlay\UI\Panel\RecruitPanel.cs" />
     <Compile Include="Assets\Script\GamePlay\UI\Panel\ConnectPanel.cs" />
     <Compile Include="Assets\Script\Infrastructure\Network\ConnectState\StartHostState.cs" />
@@ -84,6 +86,7 @@
     <Compile Include="Assets\Script\Infrastructure\Network\ConnectManage\ConnectionManager.cs" />
     <Compile Include="Assets\Script\GamePlay\UI\Panel\ArmyDetail.cs" />
     <Compile Include="Assets\Script\Infrastructure\HexagonalGrids\Controller\HexConstructor.cs" />
+    <Compile Include="Assets\Script\Test\TestPhysic.cs" />
     <Compile Include="Assets\Script\Infrastructure\HexagonalGrids\DataStruct\HexCoordinate.cs" />
     <Compile Include="Assets\Script\UnityService\Lobby\WarLobbyService.cs" />
     <Compile Include="Assets\Script\GamePlay\UI\Panel\GrainPanel.cs" />
@@ -105,8 +108,12 @@
     <Compile Include="Assets\Script\Infrastructure\Recorder\RecorderManager.cs" />
     <Compile Include="Assets\Script\Utils\TransformExtension.cs" />
     <Compile Include="Assets\Script\Infrastructure\Map\Province\ProvinceModify.cs" />
+    <Compile Include="Assets\Script\Infrastructure\BTree\Node\BaseNode.cs" />
+    <Compile Include="Assets\Script\Infrastructure\BTree\Composite\SequenceNode.cs" />
     <Compile Include="Assets\Script\GamePlay\Politic\PoliticLoader.cs" />
+    <Compile Include="Assets\Script\Infrastructure\BTree\Composite\SelectorNode.cs" />
     <Compile Include="Assets\Script\GamePlay\Army\ArmyUnit.cs" />
+    <Compile Include="Assets\Script\Infrastructure\AI\MenteCarloAI.cs" />
     <Compile Include="Assets\Script\GamePlay\Network\PlayScene\TimeNetworkSimulator.cs" />
     <Compile Include="Assets\Script\Infrastructure\Audio\AudioManager.cs" />
     <Compile Include="Assets\OtherPlugin\Demigiant\DOTweenPro\DOTweenProShortcuts.cs" />
@@ -156,10 +163,12 @@
     <Compile Include="Assets\Script\GamePlay\States\ClientChooseState.cs" />
     <Compile Include="Assets\Script\GamePlay\Army\ArmyData.cs" />
     <Compile Include="Assets\Script\GamePlay\Combat\CombatStage\EngagementStage.cs" />
+    <Compile Include="Assets\Script\Infrastructure\AI\FactionAI.cs" />
     <Compile Include="Assets\Script\GamePlay\Combat\CombatBuff.cs" />
     <Compile Include="Assets\Script\Infrastructure\Network\ConnectState\ConnectionState.cs" />
     <Compile Include="Assets\Script\GamePlay\Combat\CombatStage\StandOffStage.cs" />
     <Compile Include="Assets\Script\GamePlay\Combat\CombatStage\CombatStage.cs" />
+    <Compile Include="Assets\Script\Infrastructure\HexagonalGrids\Controller\PerlinGenerator.cs" />
     <Compile Include="Assets\Script\GamePlay\Application\TimeTask\OccupyTask.cs" />
     <Compile Include="Assets\Script\GamePlay\Combat\General\General.cs" />
     <Compile Include="Assets\Script\GamePlay\UI\Panel\ChoosePanel.cs" />
@@ -168,10 +177,13 @@
     <Compile Include="Assets\Script\GamePlay\Army\ArmyModelDetector.cs" />
     <Compile Include="Assets\Script\GamePlay\Application\TimeTask\BuildTask.cs" />
     <Compile Include="Assets\Script\GamePlay\UI\Panel\MenuPanel.cs" />
+    <Compile Include="Assets\Script\Infrastructure\AI\AIType.cs" />
     <Compile Include="Assets\Script\GamePlay\UI\Common\RateItem.cs" />
+    <Compile Include="Assets\Script\Infrastructure\Debug\Command\FactionCommand.cs" />
     <Compile Include="Assets\Script\Utils\SystemExtension.cs" />
     <Compile Include="Assets\Script\GamePlay\UI\Common\RecuitButton.cs" />
     <Compile Include="Assets\Script\GamePlay\UI\Common\BuildingItem.cs" />
+    <Compile Include="Assets\Script\Infrastructure\HexagonalGrids\MapObject\River.cs" />
     <Compile Include="Assets\OtherPlugin\Demigiant\DOTween\Modules\DOTweenModuleSprite.cs" />
     <Compile Include="Assets\Script\GamePlay\UI\Panel\CombatSituationSprite.cs" />
     <Compile Include="Assets\Script\UnityService\Lobby\RateLimitCooldown.cs" />
@@ -221,6 +233,7 @@
     <Compile Include="Assets\Script\GamePlay\Application\TimeTask\ArmyMoveTask.cs" />
     <Compile Include="Assets\Script\GamePlay\Politic\BookMarks.cs" />
     <Compile Include="Assets\Script\GamePlay\Application\Time\Timer.cs" />
+    <Compile Include="Assets\Script\Infrastructure\AI\ProvinceWeight.cs" />
     <Compile Include="Assets\Script\GamePlay\UI\Common\DetailTextPop.cs" />
     <Compile Include="Assets\Script\GamePlay\Application\Time\TimeEnum.cs" />
     <Compile Include="Assets\OtherPlugin\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />
@@ -231,6 +244,7 @@
     <Compile Include="Assets\Script\GamePlay\Network\ChooseScene\NetworkFactionChoose.cs" />
     <Compile Include="Assets\Script\UnityService\Lobby\LocalLobby.cs" />
     <Compile Include="Assets\Script\GamePlay\Network\PlayScene\PoliticNetworkLoader.cs" />
+    <Compile Include="Assets\Script\Infrastructure\BTree\Composite\ParallerNode.cs" />
     <Compile Include="Assets\Script\Infrastructure\HexagonalGrids\Utils\HexHelper.cs" />
     <Compile Include="Assets\Script\GamePlay\UI\Panel\GeneralHolder.cs" />
     <Compile Include="Assets\Script\GamePlay\Camera\CameraTarget.cs" />
@@ -243,8 +257,10 @@
   <ItemGroup>
     <None Include="Assets\OtherPlugin\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\OtherPlugin\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\Materials\TestShader.shader" />
     <None Include="Assets\OtherPlugin\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\OtherPlugin\TextMesh Pro\WarGame\7000常用字优化版.txt" />
+    <None Include="Assets\Materials\Terrain.shader" />
     <None Include="Assets\OtherPlugin\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\OtherPlugin\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\OtherPlugin\Demigiant\readme_DOTweenPro.txt" />
@@ -253,6 +269,7 @@
     <None Include="Assets\OtherPlugin\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\OtherPlugin\TextMesh Pro\WarGame\3000zh-cn.txt" />
     <None Include="Assets\Script\Infrastructure\HexagonalGrids\ReadMe_Hexagon.txt" />
+    <None Include="Assets\Shader\Hexagon\VertexColorShader.shader" />
     <None Include="Assets\OtherPlugin\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\OtherPlugin\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\OtherPlugin\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />

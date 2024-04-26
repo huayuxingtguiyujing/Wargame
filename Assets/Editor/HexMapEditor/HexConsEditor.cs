@@ -21,6 +21,10 @@ namespace WarGame_True.WarGameEditor.HexMapEditor {
 
         int mapSizeHex;
 
+        Vector2Int noiseWH = new Vector2Int(20, 20);
+        float noiseScale = 1.0f;
+
+
         public override void OnInspectorGUI() {
             DrawDefaultInspector();
 
@@ -42,6 +46,14 @@ namespace WarGame_True.WarGameEditor.HexMapEditor {
                 hexConstructor.ClearHexObject();
                 HexGenerator.GetInstance().ClearHexagon();
             }
+            if (GUILayout.Button("绘制河流")) {
+                hexConstructor.GenerateRiver();
+            }
+            if (GUILayout.Button("刷新网格")) {
+                hexConstructor.RefreshHexagons();
+            }
+           
+            GUILayout.Space(6);
 
             GUILayout.Space(6);
 
@@ -91,6 +103,22 @@ namespace WarGame_True.WarGameEditor.HexMapEditor {
                 //List<Hexagon> hexes = HexGenerator.GetInstance().GetHexagons();
                 hexConstructor.InitHexagonalGridScene(HexGenerator.GetInstance().HexagonNumDic);
             }
+
+            GUILayout.Space(12);
+            GUILayout.Label("地图随机扰动");
+            GUILayout.Space(6);
+            noiseWH = EditorGUILayout.Vector2IntField("Noise Width Height", noiseWH);
+            GUILayout.Space(2);
+            GUILayout.Label("噪声规模");
+            noiseScale = EditorGUILayout.FloatField(noiseScale, GUILayout.Width(80));
+            if (GUILayout.Button("生成柏林噪声")) {
+                hexConstructor.GeneratePerlinTexture(noiseWH.x, noiseWH.y, noiseScale);
+            }
+
+            if (GUILayout.Button("应用柏林噪声")) {
+                hexConstructor.DisturbGridMap();
+            }
+
 
         }
     }

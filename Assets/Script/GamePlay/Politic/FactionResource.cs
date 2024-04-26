@@ -9,17 +9,18 @@ namespace WarGame_True.GamePlay.Politic {
     [System.Serializable]
     public class FactionResource {
         #region 当前国库
+
+        // 金钱
         int money;
         public int Money { get => money; set => money = value; }
 
-        // 各个收入项、支出项
+        // 各个金钱收入项、支出项
         public float taxIncome_day = 0;       // 通过提前征税征 收到的
         public float taxIncome_month = 0;
         public int raidIncome = 0;
         public int dipIncome = 0;
         public int GetTotalIncome() {
             return (int)(taxIncome_day + taxIncome_month + raidIncome + dipIncome);
-            
         }
 
         public float provinceMaintenance = 0;
@@ -29,6 +30,11 @@ namespace WarGame_True.GamePlay.Politic {
             return (int)(provinceMaintenance + armyMaintenance + generalMaintenance);
         }
 
+        // 粮食存储量
+        float grainDeposits;
+        public float GrainDeposits { get => grainDeposits; set => grainDeposits = value; }
+
+        // 各个粮食收入项、支出项
         public float grainIncome_day = 0;       // TODO: 该变量是一天内获取到的粮食量, 要写相应的逻辑！
         public float grainIncome_month = 0;
         public float raidGrainIncome = 0;       // 劫掠粮食(可能用不上 自己取舍下)
@@ -42,12 +48,10 @@ namespace WarGame_True.GamePlay.Politic {
         public int GetTotalGrainOutcome() {
             return (int)(armyCostGrain + raidCostGrain);
         }
+
         #endregion
 
-        // 粮食存储量
-        float grainDeposits;
-        public float GrainDeposits { get => grainDeposits; set => grainDeposits = value; }
-
+        
         // 总人力
         long totalManpower;
         public long TotalManpower { get => totalManpower; set => totalManpower = value; }

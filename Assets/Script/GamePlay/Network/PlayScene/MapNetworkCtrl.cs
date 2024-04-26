@@ -29,23 +29,23 @@ namespace WarGame_True.Infrastructure.Map.Controller {
         
         #region 省份操作 网络同步接口
 
-        public void StartRecruitArmyEvent(uint provinceID, ArmyUnitData armyUnitData) {
+        public void StartRecruitArmyEvent(uint provinceID, int gatherID, ArmyUnitData armyUnitData) {
             if (!NetworkManager.Singleton || !NetworkManager.Singleton.IsClient) {
                 return;
             }
-            StartRecruitArmyServerRpc(provinceID, armyUnitData);
+            StartRecruitArmyServerRpc(provinceID, gatherID, armyUnitData);
         }
 
         [ServerRpc(RequireOwnership = false)]
-        private void StartRecruitArmyServerRpc(uint provinceID, ArmyUnitData armyUnitData, ServerRpcParams rpcParams = default) {
+        private void StartRecruitArmyServerRpc(uint provinceID, int gatherID, ArmyUnitData armyUnitData, ServerRpcParams rpcParams = default) {
             //Debug.Log($"服务器接收到招募军队事件, 来自省份: {provinceID}, 玩家: {rpcParams.Receive.SenderClientId}");
             if (IsSpawned) {
-                StartRecruitArmyClientRpc(rpcParams.Receive.SenderClientId, provinceID, armyUnitData);
+                StartRecruitArmyClientRpc(rpcParams.Receive.SenderClientId, provinceID, gatherID, armyUnitData);
             }
         }
 
         [ClientRpc]
-        private void StartRecruitArmyClientRpc(ulong requesterID, uint provinceID, ArmyUnitData armyUnitData, ClientRpcParams rpcParams = default) {
+        private void StartRecruitArmyClientRpc(ulong requesterID, uint provinceID, int gatherID, ArmyUnitData armyUnitData, ClientRpcParams rpcParams = default) {
             if (IsSpawned) {
                 if (requesterID == NetworkManager.LocalClientId) {
                     // 不需要在本地再次进行征募
@@ -53,9 +53,13 @@ namespace WarGame_True.Infrastructure.Map.Controller {
                 }
                 // 找到对应的省份
                 Province province = mapController.GetProvinceByID(provinceID);
+                Province gatherPrvc = null;
+                if (gatherID > 0) {
+                    gatherPrvc = mapController.GetProvinceByID((uint)provinceID);
+                }
 
                 // 执行该省份上的事件
-                province.StartRecruitArmy(armyUnitData);
+                province.StartRecruitArmy(armyUnitData, gatherPrvc);
 
                 //Debug.Log("成功在客户端执行招募事件!");
             }

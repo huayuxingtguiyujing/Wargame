@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace WarGame_True.Infrastructure.HexagonGrid.DataStruct {
@@ -47,10 +44,18 @@ namespace WarGame_True.Infrastructure.HexagonGrid.DataStruct {
     /// </summary>
     public class Point {
         public readonly double x, y;
+        public double z;
 
         public Point(double x, double y) {
             this.x = x;
             this.y = y;
+            this.z = 0;
+        }
+
+        public Point(double x, double y, double z) {
+            this.x = x;
+            this.y = y;
+            this.z = z;
         }
 
         public static implicit operator Vector2(Point point) {
@@ -62,11 +67,29 @@ namespace WarGame_True.Infrastructure.HexagonGrid.DataStruct {
         }
 
         public static implicit operator Vector3(Point point) {
-            return new Vector3(Convert.ToSingle(point.x), Convert.ToSingle(point.y), 0);
+            return new Vector3(Convert.ToSingle(point.x), Convert.ToSingle(point.y), Convert.ToSingle(point.z));
         }
 
         public static explicit operator Point(Vector3 vector) {
-            return new Point(vector.x, vector.y);
+            return new Point(vector.x, vector.y, vector.z);
+        }
+
+        // ÷ÿ‘ÿ‘ÀÀ„∑˚
+
+        public static Point operator +(Point point1, Point point2) {
+            return new Point(point1.x + point2.x, point1.y + point2.y, point1.z + point2.z);
+        }
+
+        public static Point operator -(Point point1, Point point2) {
+            return new Point(point1.x - point2.x, point1.y - point2.y, point1.z - point2.z);
+        }
+
+        public static Point operator /(Point point1, double d) {
+            return new Point(point1.x / d, point1.y / d, point1.z / d);
+        }
+
+        public static Point operator *(Point point1, double d) {
+            return new Point(point1.x * d, point1.y * d, point1.z * d);
         }
     }
 

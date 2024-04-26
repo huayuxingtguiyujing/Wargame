@@ -391,7 +391,11 @@ namespace WarGame_True.GamePlay.ArmyPart {
             }
 
             // TODO: 在provinceData中新添加一个 本地补给 的字段，用于作为localGrain的来源
-            float localGrain = CurrentProvince.provinceData.GetGrainProduce_Day();
+            float localGrain = 0;
+            if (CurrentProvince != null) {
+                localGrain = CurrentProvince.provinceData.GetGrainProduce_Day();
+            }
+
             ArmyData.CountArmyStatu(localGrain);
 
             // TODO：目前是有问题的！

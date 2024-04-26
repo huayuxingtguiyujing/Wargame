@@ -37,11 +37,7 @@ namespace WarGame_True.Infrastructure.HexagonGrid.DataStruct {
             get => hexagonNumDic;
             private set => hexagonNumDic = value;
         }
-        //public List<Hexagon> GetHexagons() {
-        //    return hexagonPosDic.Values.ToArray().ToList();
-        //}
         
-
 
         #region 不同的生成方法
         public void ClearHexagon() {

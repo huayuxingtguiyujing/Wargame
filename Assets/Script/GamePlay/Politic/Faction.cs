@@ -6,6 +6,7 @@ using WarGame_True.GamePlay.Application;
 using WarGame_True.GamePlay.Application.TimeTask;
 using WarGame_True.GamePlay.ArmyPart;
 using WarGame_True.GamePlay.CombatPart;
+using WarGame_True.Infrastructure.AI;
 using WarGame_True.Infrastructure.Audio;
 using WarGame_True.Infrastructure.Map.Controller;
 using WarGame_True.Infrastructure.Map.Provinces;
@@ -20,6 +21,12 @@ namespace WarGame_True.GamePlay.Politic {
         [Header("用于区分 势力的关键信息")]
         private FactionInfo factionInfo;
         public FactionInfo FactionInfo { get => factionInfo;private set => factionInfo = value; }
+
+        public string FactionTag { get => FactionInfo == null ? "NoTag" : FactionInfo.FactionTag; }
+
+        public bool UseAI = true;
+
+        private FactionAI FactionAI;
 
         #region 势力的资源
         FactionResource resource;
@@ -91,6 +98,7 @@ namespace WarGame_True.GamePlay.Politic {
 
             //Debug.Log("外交关系建立:" + diploRelation.hostFaction.FactionTag + "_" + diploRelation.targetFaction.FactionTag);
         }
+
         public DiploRelation GetDiploRelation(string tag) {
             if (diploRelations.ContainsKey(tag)) {
                 return diploRelations[tag];
@@ -98,12 +106,25 @@ namespace WarGame_True.GamePlay.Politic {
                 return new DiploRelation();
             }
         }
+
         /// <summary>
         /// 获得该国家所有的外交关系信息
         /// </summary>
         public List<DiploRelation> GetAllDiploRelations() {
             return diploRelations.Values.ToList();
         }
+
+        public bool IsFactionInWar() {
+            foreach (var dipRelation in diploRelations.Values.ToList())
+            {
+                // 仅检查与该国外交关系 IsInWar字段
+                if (dipRelation.IsInwar) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         #endregion
 
         #region 军队与将领
@@ -111,6 +132,41 @@ namespace WarGame_True.GamePlay.Politic {
         // 当前国家的所有军队
         private List<Army> factionArmys;
         public List<Army> FactionArmys { get => factionArmys; set => factionArmys = value; }
+
+        public int GetTotalArmyCount(ref int ArmyValue) {
+            ArmyValue = 0;
+            if (FactionArmys != null) {
+                // 遍历 所有军队 计算维护费的开销总和
+                foreach (var army in FactionArmys)
+                {
+                    ArmyValue += (int)army.ArmyData.GetArmyMaintenanceCost() / 1000;
+                }
+            }
+            return FactionArmys.Count;
+        }
+
+        /// <summary>
+        /// 获取当前正在招募的军队数目
+        /// </summary>
+        /// <param name="RecrValue">正在招募的部队的权重（Cost）</param>
+        /// <returns></returns>
+        public int GetRecruitingArmyCount(ref int RecrValue) {
+            int ans = 0;
+            RecrValue = 0;
+            foreach (var province in Territory)
+            {
+                if(province.recruitTaskList != null) {
+                    foreach (var task in province.recruitTaskList)
+                    {
+                        // 部队权重: 维持该只部队的开销 (要除1000)
+                        RecrValue += (int)task.armyUnitData.armyReinforcementCost / 1000;
+                    }
+                    ans += province.recruitTaskList.Count;
+                }
+            }
+            return ans;
+        }
+        
         /// <summary>
         /// 获得所有军队人数总数
         /// </summary>
@@ -122,6 +178,7 @@ namespace WarGame_True.GamePlay.Politic {
             });
             return num;
         }
+
         public void AddNewArmy(Army army) {
             if (FactionArmys == null) {
                 FactionArmys = new List<Army>();
@@ -130,6 +187,7 @@ namespace WarGame_True.GamePlay.Politic {
                 FactionArmys.Add(army);
             }
         }
+
         public void RemoveArmy(Army army) {
             if(FactionArmys == null) {
                 FactionArmys = new List<Army>();
@@ -138,9 +196,7 @@ namespace WarGame_True.GamePlay.Politic {
                 FactionArmys.Remove(army);
             }
         }
-        public void ClearArmy() {
-            // 这是禁止的行为！
-        }
+
 
         /// <summary>
         /// 更新军队补给线
@@ -157,9 +213,6 @@ namespace WarGame_True.GamePlay.Politic {
             }
         }
 
-        public void PaySupply(Army army) {
-            Resource.PaySupply(army);
-        }
 
         // 将领操作回调
         public delegate void GeneralChangeDelegate(string generalTag);
@@ -354,7 +407,7 @@ namespace WarGame_True.GamePlay.Politic {
                 // TODO: 调用 Army 的 SetSupplyTask;
                 targetArmy.SetSupplyTask(armySupplyTask);
 
-                Debug.Log("建立了补给事务，出发点为: " + capital.provinceData.provinceID);
+                //Debug.Log("建立了补给事务，出发点为: " + capital.provinceData.provinceID);
             }
 
             return;

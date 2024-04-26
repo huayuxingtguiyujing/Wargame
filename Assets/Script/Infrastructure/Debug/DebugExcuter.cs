@@ -161,6 +161,37 @@ namespace WarGame_True.Infrastructure.DebugPack {
                 SetErrorLog("not a faction command!");
                 return null;
             }
+
+            int inputNum = CommandParts.Length;
+            if (inputNum <= 1) {
+                SetErrorLog("faction command: not enough parameter");
+                return null;
+            }
+
+            switch (CommandParts[1]) {
+                case "ai":
+                    // 是控制ai类的命令
+                    if(inputNum < 4) {
+                        SetErrorLog("faction command: ai command not valid!");
+                        return null;
+                    }
+
+                    bool enableAI = true;
+                    if (CommandParts[2] == "enable") {
+                        enableAI = true;
+                    } else if (CommandParts[2] == "disable") {
+                        enableAI = false;
+                    }
+                    // 获取要操控的 faction 的 tag
+                    string factionTag = CommandParts[3];
+                    if (string.IsNullOrEmpty(factionTag)) {
+                        SetErrorLog("faction command: input a null or empty faction tag!");
+                        return null;
+                    }
+
+                    return new FactionCommand(factionTag, true, enableAI);
+            }
+
             return null;
         }
 

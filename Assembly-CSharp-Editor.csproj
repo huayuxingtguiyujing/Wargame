@@ -58,7 +58,9 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2023.1.1f1c1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Editor\HexMapEditor\MapCtrlEditor.cs" />
     <Compile Include="Assets\Editor\Politic\FactionInfoEditor.cs" />
+    <Compile Include="Assets\Editor\EditorUI\TestUI.cs" />
     <Compile Include="Assets\Editor\Politic\ArmyControllerEditor.cs" />
     <Compile Include="Assets\Editor\ExcelHandler\ExcelHandler.cs" />
     <Compile Include="Assets\Editor\HexMapEditor\HexConsEditor.cs" />

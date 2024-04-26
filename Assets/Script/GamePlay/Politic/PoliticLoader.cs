@@ -5,6 +5,7 @@ using Unity.Netcode;
 using UnityEngine;
 using WarGame_True.GamePlay.Application;
 using WarGame_True.GamePlay.UI;
+using WarGame_True.Infrastructure.AI;
 
 namespace WarGame_True.GamePlay.Politic {
     /// <summary>
@@ -79,19 +80,20 @@ namespace WarGame_True.GamePlay.Politic {
             //政治势力ui面板
             politicPanel.InitPoliticPanel(BookMarkFactions);
 
-            // 地图
+            // 地图ui面板
             mapPanel.InitMapPanel();
 
             //PlayerFaction = BookMarkFactions[0];
             // TODO：客户端没有设置PlayerFaction！
             PlayerFaction = GetFactionByInfo(ApplicationController.PlayerFaction);
 
-            // 初始化国家势力界面
+            // 初始化国家势力ui面板
             factionPanel.InitFactionPanel(PlayerFaction);
         }
 
 
-        #region 获取国家势力相关信息
+        #region 获取 国家势力相关信息
+
         /// <summary>
         /// 根据给定的tag，寻找对应的国家势力
         /// </summary>
@@ -132,6 +134,21 @@ namespace WarGame_True.GamePlay.Politic {
             return GetFactionByTag(tag).GetAllDiploRelations().ToArray();
         }
 
+        /// <summary>
+        /// 获取与指定tag敌对的所有tag
+        /// </summary>
+        public List<string> GetFactionEnemyTag(string tag) {
+            DiploRelation[] dipRec = GetFactionDiploRelation(tag);
+            List<string> EnemyTags = new List<string>();
+            foreach (var dip in dipRec) {
+                // 检测到在战争中
+                if (dip.IsInwar) {
+                    EnemyTags.Add(dip.targetFaction.FactionTag);
+                }
+            }
+            return EnemyTags;
+        }
+
         public bool IsFactionInWar(string tag1, string tag2) {
             if (tag1 == tag2) return false;
 
@@ -142,7 +159,10 @@ namespace WarGame_True.GamePlay.Politic {
                 // 出错，一律认为不在战争中
                 return false;
             }
+        }
 
+        public bool IsFactionInWar(string tag) {
+            return GetFactionByTag(tag).IsFactionInWar();
         }
 
         public Color GetFactionColor(string tag) {
@@ -158,7 +178,50 @@ namespace WarGame_True.GamePlay.Politic {
 
         #endregion
 
-        #region 网络同步 各个势力信息
+        #region 控制 各个势力的AI行为
+        
+        public List<FactionAI> GetAllFactionAI() {
+            List<FactionAI> factionAIs = new List<FactionAI>();
+            foreach (Faction faction in BookMarkFactions) {
+                FactionAI factionAI = FindFactionAI(faction.FactionTag);
+                if (factionAI != null) {
+                    // 能找到 FactionAI，则加入返回列表
+                    factionAIs.Add(factionAI);
+                }
+            }
+            return factionAIs;
+        }
+
+        /// <summary>
+        /// 找到指定 Tag 的 FactionAI
+        /// </summary>
+        public FactionAI FindFactionAI(string tag) {
+            Faction rec = GetFactionByTag(tag);
+            FactionAI factionAI = rec.GetComponent<FactionAI>();
+            
+            return factionAI;
+        }
+
+        /// <summary>
+        /// 启用指定 Tag 的 FactionAI，若该 Tag 没有 则生成之
+        /// </summary>
+        public void EnableAI(string tag) {
+            FactionAI factionAI = FindFactionAI(tag);
+            if (factionAI == null) {
+                // 如果没有 FactionAI ，则创建之
+                factionAI = FactionAI.GetFactionAI(GetFactionByTag(tag));
+            }
+            factionAI.enabled = true;
+            // 启用 AI 后顺带初始化之
+            factionAI.InitFactionAI(GetFactionByTag(tag));
+        }
+
+        public void DisableAI(string tag) {
+            FactionAI factionAI = FindFactionAI(tag);
+            if (factionAI != null) {
+                factionAI.enabled = false;
+            }
+        }
 
         #endregion
 

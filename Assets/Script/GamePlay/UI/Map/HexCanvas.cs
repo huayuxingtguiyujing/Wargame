@@ -57,6 +57,9 @@ namespace WarGame_True.GamePlay.UI {
             transform.position = position;
         }
 
+        public void SetCenterText(string centerText) {
+            CenterText.text = centerText;
+        }
 
 
         #region 省份事务的ui（如围城、建筑、造兵等）

@@ -27,6 +27,8 @@ namespace WarGame_True.Infrastructure.HexagonGrid.DataStruct {
         public virtual Point Hex_Corner_Offset(Layout layout, int corner) { return null; }
 
         public virtual List<Point> Polygon_Corners(Layout layout, Hex hex) { return null; }
+
+        public virtual List<Point> Polygon_Corners_Local(Hex hex) { return null; }
         #endregion
     }
 
@@ -53,7 +55,7 @@ namespace WarGame_True.Infrastructure.HexagonGrid.DataStruct {
     /// 支持 整型 的六边形坐标结构 有q r s三个维度
     /// </summary>
     public class Hexagon : Hex {
-
+        //NOTICE: 这里的坐标貌似跟六边形的 q r s 坐标正负性反了
         public Hexagon(int _q, int _r, int  _s): base(_q, _r, _s){
         }
 
@@ -134,6 +136,7 @@ namespace WarGame_True.Infrastructure.HexagonGrid.DataStruct {
         #endregion
 
         #region 与屏幕上的点 互相转换
+
         /// <summary>
         /// 将 六边形数据类 转化为 像素点
         /// </summary>
@@ -168,7 +171,7 @@ namespace WarGame_True.Infrastructure.HexagonGrid.DataStruct {
         }
 
         /// <summary>
-        /// 获取 六边形的 指定顶点
+        /// 获取 六边形的 指定顶点 - 顶点0在中心的左上角 - 顺时针取值
         /// </summary>
         public override Point Hex_Corner_Offset(Layout layout, int corner) {
             Point size = layout.Size;
@@ -198,11 +201,29 @@ namespace WarGame_True.Infrastructure.HexagonGrid.DataStruct {
             }
             return corners;
         }
+
+        //public override List<Point> Polygon_Corners_Local(Hex hex) {
+        //    List<Point> corners = new List<Point>();
+
+        //    //获取 六边形 的中心点
+        //    Point center = Hex_To_Pixel(layout, hex);
+
+        //    //生成 六边形 六个顶点的坐标
+        //    for (int i = 0; i < 6; i++) {
+        //        Point offset = Hex_Corner_Offset(layout, i);
+        //        corners.Add(new Point(offset.x, offset.y));
+        //    }
+        //    return corners;
+        //}
         #endregion
 
         #region 坐标算术、类型转换、运算符重载
         private Hex Hex_Add(Hex h1, Hex h2) {
             return new Hex(h1.q + h2.q, h1.r + h2.r, h1.s + h2.s);
+        }
+
+        private Hexagon Hexagon_Add(Hexagon h1, Hex h2) {
+            return new Hexagon(h1.q + h2.q, h1.r + h2.r, h1.s + h2.s);
         }
 
         public static Hex operator +(Hexagon h1, Hex h2) {
@@ -245,27 +266,33 @@ namespace WarGame_True.Infrastructure.HexagonGrid.DataStruct {
         #endregion
 
         #region 判断、获取邻居
+        // 顺序 邻居0是正左边的邻居 - 顺时针取值
         readonly List<Vector3>  Hex_Directions = new List<Vector3>{
-            new Vector3(1, 0, -1), new Vector3(1, -1, 0), new Vector3(0, -1, 1),
-            new Vector3(-1, 0, 1), new Vector3(-1, 1, 0), new Vector3(0, 1, -1)
+            new Vector3(1, 0, -1),
+            new Vector3(0, 1, -1),
+            new Vector3(-1, 1, 0),
+            new Vector3(-1, 0, 1),
+            new Vector3(0, -1, 1),
+            new Vector3(1, -1, 0),
         };
 
-        public Hex Hex_Direction(int direction) {
+        public Hexagon Hex_Direction(HexDirection direction) {
 #if UNITY_EDITOR
-            Assert.IsTrue(0 <= direction && direction < 6);
+            Assert.IsTrue(0 <= direction && (int)direction < 6);
 #endif
             //方向需要模6
-            direction = direction % 6;
-            Debug.Log(direction);
-            return (Hexagon)Hex_Directions[direction];
+            //direction = direction % 6;
+            //Debug.Log(direction);
+            return (Hexagon)Hex_Directions[(int)direction];
         }
 
         /// <summary>
-        /// 获取该六边形 其中 一个方向的 邻居
+        /// 获取该六边形 其中 一个方向的 邻居 - 邻居0在正左边 - 顺时针取值
         /// </summary>
-        public Hex Hex_Neighbor(Hex hex, int direction) {
-            return Hex_Add(hex, Hex_Direction(direction));
+        public Hexagon Hex_Neighbor(HexDirection direction) {
+            return Hexagon_Add(this, Hex_Direction(direction));
         }
+
         #endregion
 
         #region 判断相等
@@ -293,6 +320,13 @@ namespace WarGame_True.Infrastructure.HexagonGrid.DataStruct {
 
     }
 
-
+    public enum HexDirection {
+        W = 0,
+        NW = 1,
+        NE = 2,
+        E = 3,
+        SE = 4,
+        SW = 5
+    }
 
 }

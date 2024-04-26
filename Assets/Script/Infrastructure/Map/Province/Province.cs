@@ -49,6 +49,21 @@ namespace WarGame_True.Infrastructure.Map.Provinces{
             return provinceData.CurrentControlTag == tag;
         }
 
+        public bool UnderEnemyControl(string tag) {
+            List<string> enemyTag = PoliticLoader.Instance.GetFactionEnemyTag(tag);
+            foreach (var enemy in enemyTag)
+            {
+                if (UnderTagControl(enemy)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool OwnerByTag(string tag) {
+            return provinceData.OwnerTag == tag;
+        }
+
         /// <summary>
         /// 随时间更改省份数据，需要在国家势力部分，注册到时间结事件中
         /// </summary>
@@ -145,32 +160,42 @@ namespace WarGame_True.Infrastructure.Map.Provinces{
             return armiesInProvince != null && armiesInProvince.Count > 0;
         }
 
-        public bool ExistFriendlyArmy() {
+        public int GetCountryArmy() {
+            int count = 0;
             if (armiesInProvince == null) {
-                return false;
+                return count;
             }
             // 遍历检查是否是
             foreach (Army army in armiesInProvince)
             {
                 if (army.ArmyData.IsArmyTag(provinceData.OwnerTag)) {
-                    return true;
+                    count++;
                 }
             }
-            return false;
+            return count;
         }
 
-        public bool ExistHostileArmy() {
+        public int GetFriendlyArmy() {
+            // TODO: 获得友军军队
+            return 0;
+        }
+
+        public int GetHostileArmy() {
+            int count = 0;
             if (armiesInProvince == null) {
-                return false;
+                return count;
             }
             foreach (Army army in armiesInProvince) {
                 bool isHostile = PoliticLoader.Instance.IsFactionInWar(provinceData.OwnerTag, army.ArmyData.ArmyTag);
                 // 检测到敌军部队
-                if (isHostile) return true;
+                if (isHostile) {
+                    count++;
+                }
             }
-            return false;
+            return count;
         }
 
+        //public float GetHostileArmy
 
         public void RemoveArmyFromProvince(Army army) {
             if (armiesInProvince.Contains(army)) {
@@ -212,7 +237,9 @@ namespace WarGame_True.Infrastructure.Map.Provinces{
             }
         }
 
-
+        /// <summary>
+        /// 获取传入tag的敌对国家的军队
+        /// </summary>
         public List<Army> GetAnemiesInProvince(string factionTag) {
             List<Army> anemies = new List<Army>();
             foreach (Army armyInProvince in armiesInProvince)
@@ -221,7 +248,7 @@ namespace WarGame_True.Infrastructure.Map.Provinces{
                 bool isHostile = PoliticLoader.Instance.IsFactionInWar(factionTag, armyInProvince.ArmyData.ArmyTag);
                 if (isHostile && armyInProvince.ArmyActionState != ArmyActionState.Withdrawing) {
                     anemies.Add(armyInProvince);
-                } 
+                }
             }
 
             return anemies;
@@ -248,19 +275,14 @@ namespace WarGame_True.Infrastructure.Map.Provinces{
 
             return allies;
         }
-        
-        public void SetInitArmyUI() {
-            foreach (Army army in armiesInProvince)
-            {
-                
-            }
-        }
+
+
         #endregion
 
         #region 省份 事件（招募、战役、围城）
 
         // 当前省份正在进行的招募事件
-        private List<RecruitTask> recruitTaskList;
+        public List<RecruitTask> recruitTaskList;
 
         // 当前省份进行的战役, 为null 则表示未发生战役
         public CombatTask currentCombat { get; private set; }
@@ -312,16 +334,17 @@ namespace WarGame_True.Infrastructure.Map.Provinces{
         /// <summary>
         /// 招募按钮 绑定的事件
         /// </summary>
-        public void RecruitArmyEvent(ArmyUnitData armyUnitData) {
-            StartRecruitArmy(armyUnitData);
+        public void RecruitArmyEvent(ArmyUnitData armyUnitData, Province GatherPlace = null) {
+            StartRecruitArmy(armyUnitData, null);
             // 通知到其他连接的客户端
-            MapNetworkCtrl.Instance.StartRecruitArmyEvent(provinceData.provinceID, armyUnitData);
+            int gatherID = GatherPlace != null ? (int)GatherPlace.provinceID : -1;
+            MapNetworkCtrl.Instance.StartRecruitArmyEvent(provinceData.provinceID, gatherID, armyUnitData);
         }
 
-        public void StartRecruitArmy(ArmyUnitData armyUnitData) {
+        public void StartRecruitArmy(ArmyUnitData armyUnitData, Province GatherPrvc) {
             //Debug.Log("开始招募军队*1 ： "+ armyUnitData.armyUnitName + "place: " + provincePosition);
 
-            RecruitTask task = new RecruitTask(armyUnitData.armyCostBaseDay, armyUnitData);
+            RecruitTask task = new RecruitTask(armyUnitData.armyCostBaseDay, armyUnitData, GatherPrvc);
             recruitTaskList.Add(task);
             // 显示进度条
             ShowRecruitProcess();
@@ -724,7 +747,15 @@ namespace WarGame_True.Infrastructure.Map.Provinces{
             provinceData.CurrentControlTag = currentContrl;
 
             SetProvinceOccupiedStatu(provinceData.OwnerTag, provinceData.CurrentControlTag);
+            // 为网格填色
+            hexGrid.SetHexGridBG(color);
+            // 设置中心文本为省份ID
+            hexGrid.SetCenterText("", true);
+        }
 
+        public void ShowProvinceTerrain() {
+            UnityEngine.Color color = provinceData.GetTerrainColor();
+            // 为网格填色
             hexGrid.SetHexGridBG(color);
         }
 
@@ -768,7 +799,18 @@ namespace WarGame_True.Infrastructure.Map.Provinces{
         public void SetProvinceNormal() {
             hexGrid.SetHexGridNormal();
         }
-        
+
+        /// <summary>
+        /// 设置省份的中心文本
+        /// </summary>
+        /// <param name="weightText">中心文本</param>
+        /// <param name="setHexID">为true时，会设置中心文本为省份的ID</param>
+        public void ShowProvinceWeight(string weightText, bool setHexID = false) {
+            hexGrid.SetCenterText(weightText, setHexID);
+            // 设置背景颜色
+            hexGrid.SetHexGridBG(UnityEngine.Color.white);
+        }
+
         #endregion
 
         /// <summary>
@@ -793,6 +835,8 @@ namespace WarGame_True.Infrastructure.Map.Provinces{
             
             return neighborPosition;
         }
+
+
 
     }
 
