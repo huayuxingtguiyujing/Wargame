@@ -17,8 +17,6 @@ namespace WarGame_True.Infrastructure.HexagonGrid.MapObject {
     /// HexGrid 地图网格的UI控制类， 仅支持x y平面
     /// </summary>
     public class HexGrid : MonoBehaviour {
-        [Header("是否正在测试")]
-        public bool IsInTest = true;
 
         [Header("纹理")]
         public MeshFilter meshFilter;
@@ -32,10 +30,10 @@ namespace WarGame_True.Infrastructure.HexagonGrid.MapObject {
         public List<UnityEngine.Color> colors;
         public List<Vector3> terrainTypes;
 
-
         // innerRatio 即内部的六边形的半径所占比例
         float innerRatio = 0.7f;
 
+        #region 河流相关
         [Header("河流")]
         public bool hasRiverIn = false;
 
@@ -51,7 +49,7 @@ namespace WarGame_True.Infrastructure.HexagonGrid.MapObject {
             }
 
             int inDir = GetNeighborIndex(pre);
-            
+
             if (inDir >= 0) {
                 hasRiverIn = true;
                 RiverInDir = (HexDirection)Mathf.Min(inDir, 5);
@@ -59,7 +57,7 @@ namespace WarGame_True.Infrastructure.HexagonGrid.MapObject {
         }
 
         public void SetRiverOutPath(HexGrid next) {
-            if(next == null) {
+            if (next == null) {
                 return;
             }
 
@@ -79,6 +77,7 @@ namespace WarGame_True.Infrastructure.HexagonGrid.MapObject {
             return hasRiverIn && hasRiverOut;
         }
 
+        #endregion
 
         [Header("邻居")]
         public List<HexGrid> NeighbourGrids = new List<HexGrid>();  // idx与邻居方位对应
@@ -147,6 +146,7 @@ namespace WarGame_True.Infrastructure.HexagonGrid.MapObject {
         public HexCanvas hexCanvas;
 
 
+        #region HexGrid 初始化
         public void InitHexGird(float HexR, uint hexID, Hexagon coordinate) {
             HexID = hexID;
             hexPosition = coordinate;
@@ -165,19 +165,18 @@ namespace WarGame_True.Infrastructure.HexagonGrid.MapObject {
             // 通过 Mesh 来初始化网格
             hexMesh = new Mesh();
             meshFilter = GetComponentInChildren<MeshFilter>();
-            meshFilter.mesh = hexMesh;
+            if (meshFilter != null) meshFilter.mesh = hexMesh;
             hexMesh.name = "Hex Mesh";
 
             vertices = new List<Vector3>();
             triangles = new List<int>();
             colors = new List<Color>();
             terrainTypes = new List<Vector3>();
-            //ListPool<Vector3>.Add(); TODO: 试试unity官方的池化对象
+            //ListPool<Vector3>.Add(); // TODO: unity官方的池化对象
 
-            //获得中心
+            // 获得Hex的中心
             Point center = hex.Hex_To_Pixel(layout, hex);
             Vector3 centerPoint = (Vector3)center;
-
             transform.position = centerPoint;
 
             //获得顶点，创建顶点物体
@@ -194,17 +193,17 @@ namespace WarGame_True.Infrastructure.HexagonGrid.MapObject {
             GridColor = GetGridColor_Random();
             // 设置高度
             GridHigh = GetGridHigh_Random();
-            // 设置河流 ?
+            // TODO: 设置河流
 
             // 设置mesh
-            // NOTICE: 要混合颜色，则需要在设置邻居之后调用
+            // NOTE: 因为要混合颜色，则需要在设置完hex邻居之后再调用，故放到hexConstructor中
             //DrawHexGridMesh(layout, hex);
 
             // TODO: 设置R（宽高 大小）
-            // NOTICE: 使用scale会导致纹理大小异常
+            // NOTE: 使用scale会导致纹理大小异常
             float xSize = R * Mathf.Sqrt(3);
             float ySize = R * 2;
-            //InitHexGrid(xSize, ySize, centerPoint);
+            InitHexGrid(xSize, ySize, centerPoint);
 
         }
 
@@ -232,6 +231,8 @@ namespace WarGame_True.Infrastructure.HexagonGrid.MapObject {
 
         }
 
+        #endregion
+
         public void SetCenterText(string centerText, bool setHexID = false) {
             if (setHexID) {
                 // setHexID为true时，设置中心文本为 HexID，否则设置centerText
@@ -240,7 +241,6 @@ namespace WarGame_True.Infrastructure.HexagonGrid.MapObject {
                 hexCanvas.SetCenterText(centerText);
             }
         }
-
 
         #region 网格 状态改变
         public void SetHexGridActive() {
@@ -340,8 +340,7 @@ namespace WarGame_True.Infrastructure.HexagonGrid.MapObject {
 
         #endregion
 
-
-        #region 基于Mesh 绘制网格
+        #region 基于Mesh 绘制Hex地表
 
         private bool ShouldDivideStair(float highGap) {
             return highGap <= 3 && highGap > 0;
@@ -428,8 +427,6 @@ namespace WarGame_True.Infrastructure.HexagonGrid.MapObject {
                     GridColor, GridColor, GridColor,
                     lerpNum
                 );
-
-                // 
 
                 // 三个邻居的颜色 j - 两个外顶点共有的邻居; i - 第一个外顶点的独有邻居; k - ~
                 float highNeigh_i = GetNeighbor(i) == null ? GridHigh : GetNeighbor(i).GridHigh;
@@ -598,7 +595,6 @@ namespace WarGame_True.Infrastructure.HexagonGrid.MapObject {
 
 
         // NOTICE: 0.4f, 3 是共用的插值比例
-
         /// <summary>
         /// 获得梯形插值划分后 的两个中间点
         /// </summary>
@@ -707,7 +703,6 @@ namespace WarGame_True.Infrastructure.HexagonGrid.MapObject {
             );*/
         }
 
-
         // TODO: 建议修缮此处的代码，现在太啰嗦
         /// <summary>
         /// 构造梯田旁边的（左边）小三角形（也是梯田结构） - 输入三个顶点
@@ -715,8 +710,6 @@ namespace WarGame_True.Infrastructure.HexagonGrid.MapObject {
         private void DrawStairsTriangle_Left(Color edgeVertex_color, Color outterVertext_color,
            Point innerVertex, Point outterVertex, Point edgeVertex) {
 
-            //, 0.4f, 3 是共用的插值比例
-            
             /*Point[] slerpPoints_inner_Edge = GetDivideStairPoints(innerVertex, edgeVertex, 0.4f, 3);
             // 不是梯形结构的三角形
             float step = 0.4f;
@@ -1000,7 +993,6 @@ namespace WarGame_True.Infrastructure.HexagonGrid.MapObject {
         }
 
         #endregion
-
 
         #region 基于Mesh 绘制河流
 

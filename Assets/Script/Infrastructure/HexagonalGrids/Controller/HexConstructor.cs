@@ -69,10 +69,8 @@ namespace WarGame_True.Infrastructure.HexagonGrid.Controller {
                 } else {
                     CurrentIDHex.Add(hexGrid.HexID, hexGrid);
                 }
-                //Debug.Log(hexGrid.hexCanvas == null);
             }
 
-            //Debug.Log(CurrentHexProvince.Count);
         }
 
         private void Start() {
@@ -83,7 +81,6 @@ namespace WarGame_True.Infrastructure.HexagonGrid.Controller {
             //生成 Hex 六边形网格类 加入到集合中
             HexGenerator.GetInstance().ClearHexagon();
             HexGenerator.GetInstance().GenerateHexagon(10);
-            //List<Hexagon> hexes = HexGenerator.GetInstance().GetHexagons();
             Dictionary<uint, Hexagon> hexeIDDic = HexGenerator.GetInstance().HexagonNumDic;
 
             Debug.Log("you have create " + hexeIDDic.Count.ToString() + " hex class");
@@ -92,25 +89,27 @@ namespace WarGame_True.Infrastructure.HexagonGrid.Controller {
         }
 
         public void InitHexagonalGridScene(Dictionary<uint, Hexagon> hexeIDDic) {
-            // 不用在这记了
-            //记录 当前生成的网格地图
+            // 记录 当前生成的网格地图
             CurrentHexagons = hexeIDDic.Values.ToList();
 
             Layout layout = GetScreenLayout();
 
             //初始化地图网格物体
-            foreach (KeyValuePair <uint, Hexagon> IDHexPair in hexeIDDic)
-            {
+            foreach (KeyValuePair <uint, Hexagon> IDHexPair in hexeIDDic) {
                 CreateHexagon(layout, IDHexPair.Key, IDHexPair.Value);
             }
 
             // 设置地图网格的邻居节点
             SetHexNeighbor(CurrentHexagons, CurrentPosHex);
 
-            // 生成河流？
+            // TODO: 生成河流
 
-            // 生成 Mesh 网格
-            RefreshHexagons();
+            // NOTE: 生成 Mesh 网格 // DON DEL
+            // RefreshHexagons();
+
+#if UNITY_EDITOR
+            Debug.Log("当前生成的网格单元数目：" + CurrentHexagons.Count);
+#endif
         }
 
         private Layout GetScreenLayout() {
@@ -129,6 +128,10 @@ namespace WarGame_True.Infrastructure.HexagonGrid.Controller {
             // 创建并且初始化（基于mesh）hexgrid
             GameObject hexGridObject = Instantiate(hexGridPrefab, hexGridTransform);
             HexGrid hexGrid = hexGridObject.GetComponent<HexGrid>();
+
+            //hexGrid.InitHexGird(layout.Size, hexID, hex);
+
+            // 基于Mesh绘制地图网格的方式
             hexGrid.InitHexGrid_Mesh(layout, hexID, hex);
 
             //加入到映射当中

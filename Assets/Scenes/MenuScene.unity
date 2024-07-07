@@ -1721,6 +1721,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7684613853330625302, guid: 285613f53b95be44ba7584a742a3b997, type: 3}
+      propertyPath: TextMoveTime
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 7940600241832422730, guid: 285613f53b95be44ba7584a742a3b997, type: 3}
       propertyPath: m_IsActive
       value: 1

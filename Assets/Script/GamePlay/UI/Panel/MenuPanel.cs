@@ -4,9 +4,16 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using WarGame_True.GamePlay.Politic;
+using DG;
+using DG.Tweening;
 
 namespace WarGame_True.GamePlay.UI {
     public class MenuPanel : MonoBehaviour {
+
+        [Header("ui动效-文字")]
+        [SerializeField] Transform BGText;
+        [SerializeField] float TextMoveTime = 20;
+        [SerializeField] float TextMoveTarget = 1000;
 
         [Header("主菜单的按钮")]
         [SerializeField] Button developButton;
@@ -21,6 +28,8 @@ namespace WarGame_True.GamePlay.UI {
             multiPlayButton.onClick.AddListener(multiPlayAction);
             exitgameButton.onClick.AddListener(ExitGame);
 
+            // ui动效
+            BGText.DOMoveY(TextMoveTarget, TextMoveTime);
         }
 
 

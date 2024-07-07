@@ -122,6 +122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1844405df668f124eabda9b5aaf4f8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BGText: {fileID: 6752391867965985571}
+  TextMoveTime: 20
+  TextMoveTarget: 1000
   developButton: {fileID: 2505023829386650162}
   singlePlayButton: {fileID: 4908786876216300163}
   multiPlayButton: {fileID: 8440514822292614149}
@@ -160,9 +163,9 @@ RectTransform:
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -178.61237, y: 0}
-  m_SizeDelta: {x: 357.2243, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -178.61237, y: -460}
+  m_SizeDelta: {x: 357.2243, y: 567.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1775655115719542724
 CanvasRenderer:
