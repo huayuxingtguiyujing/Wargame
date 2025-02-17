@@ -1,13 +1,15 @@
 # WarGameDemo
 
-这是一个用于验证游戏制作思路的demo，是一个使用unity制作的战棋游戏，等待后续的更新维护。<br>
-该demo仿自欧陆风云、欧陆战争等策略类游戏，目前是一个半成品，立绘、背景图和音频资源均来自于公开网站。<br>
+#### 这是什么？：
+
+这是一个用于验证游戏制作思路的`demo`，是一个使用`unity`制作的战棋游戏，等待后续的更新维护。<br>
+该`demo`仿自`欧陆风云、欧陆战争`等策略类游戏，目前是一个半成品，立绘、背景图和音频资源均来自于公开网站。<br>
 
 #### 有什么功能？：
 -地图：六边形格子作为基本单位的地图，规模`30000`，使用中国地图作为背景；
 -军队：创建移动消耗军队，军队之间的[战斗](https://github.com/huayuxingtguiyujing/Wargame/tree/main/Assets/Script/GamePlay/Combat)，还有围城机制；
 -AI：`行为树+势力图`方案构建的策略游戏AI；
--联网：用unity官方推荐的`Netcode`工作流构建的联网模块，支持局域网连接；
+-联网：用`unity`官方推荐的`Netcode`工作流构建的联网模块，支持局域网连接；
 
 #### 游戏内容：
 
@@ -27,10 +29,12 @@
 
 #### 相关链接：
 
-[unity的bossroom示例](https://github.com/Unity-Technologies/com.unity.multiplayer.samples.coop.git);<br>
-[unity cloud 官网](https://cloud.unity.com/);<br>
-[unity game service 官网](https://unity.com/cn/solutions/gaming-services);<br>
-还有：
+`unity`官方相关：<br>
+[`unity`的`bossroom`示例，演示 `Netcode` 的使用](https://github.com/Unity-Technologies/com.unity.multiplayer.samples.coop.git);<br>
+[`unity cloud` 官网](https://cloud.unity.com/);<br>
+[`unity game service` 官网](https://unity.com/cn/solutions/gaming-services);<br>
+
+地图部分受下面的博客启发：<br>
 [catlike-hex map](https://catlikecoding.com/unity/tutorials/hex-map/); <br>
 [hexagons grids](https://www.redblobgames.com/grids/hexagons/);<br>
 伟大，无需多言！
