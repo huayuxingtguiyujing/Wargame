@@ -8,6 +8,8 @@
 #### 有什么功能？：
 -地图：六边形格子作为基本单位的地图，规模`30000`，使用中国地图作为背景；<br>
 -军队：创建移动消耗军队，军队之间的[战斗](https://github.com/huayuxingtguiyujing/Wargame/tree/main/Assets/Script/GamePlay/Combat)，还有围城机制；<br>
+-经济：与p社游戏类似的经济机制<br>
+-外交：以国家势力为单位的外交玩法<br>
 -AI：`行为树+势力图`方案构建的策略游戏AI；<br>
 -联网：用`unity`官方推荐的`Netcode`工作流构建的联网模块，支持局域网连接；<br>
 
